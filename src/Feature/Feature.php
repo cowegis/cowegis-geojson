@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Cowegis\GeoJson\Feature;
 
-use ArrayObject;
 use Cowegis\GeoJson\BaseGeoJsonObject;
 use Cowegis\GeoJson\BoundingBox;
 use Cowegis\GeoJson\CoordinateReferenceSystem\CoordinateReferenceSystem;
