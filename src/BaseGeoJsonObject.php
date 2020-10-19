@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Cowegis\GeoJson;
 
-
 use Cowegis\GeoJson\CoordinateReferenceSystem\CoordinateReferenceSystem;
 
 abstract class BaseGeoJsonObject implements GeoJsonObject
