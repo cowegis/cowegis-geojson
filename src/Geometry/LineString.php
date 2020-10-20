@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Cowegis\GeoJson\Geometry;
 
 use Cowegis\GeoJson\BoundingBox;
+use Cowegis\GeoJson\Exception\InvalidArgumentException;
 use Cowegis\GeoJson\Position\MultiCoordinates;
-use InvalidArgumentException;
 
 use function count;
 

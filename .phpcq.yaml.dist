@@ -85,7 +85,9 @@ tasks:
     config:
     #  exclude:
     #  names:
-    #  names_exclude:
+      names_exclude:
+        - LineStringSpec.php
+        - MultiPointSpec.php
     #  regexps_exclude:
     #  log:
     #  min_lines:

@@ -5,6 +5,10 @@ declare(strict_types=1);
 namespace Cowegis\GeoJson\Geometry;
 
 use Cowegis\GeoJson\BaseGeoJsonObject;
+use Cowegis\GeoJson\Exception\InvalidArgumentException;
+use JsonSerializable;
+
+use function is_array;
 
 /**
  * @psalm-template TCoordinates
@@ -32,8 +36,39 @@ abstract class GeometryWithCoordinates extends BaseGeoJsonObject implements Geom
     public function jsonSerialize(): array
     {
         $data                = parent::jsonSerialize();
-        $data['coordinates'] = $this->coordinates();
+        $data['coordinates'] = $this->serializeCoordinates($this->coordinates());
 
         return $data;
+    }
+
+    /**
+     * @param array<int,mixed>|JsonSerializable $coordinates
+     *
+     * @return array<mixed,mixed>
+     *
+     * @psalm-param TCoordinates|JsonSerializable $coordinates
+     */
+    private function serializeCoordinates($coordinates): array
+    {
+        if ($coordinates instanceof JsonSerializable) {
+            /** @psalm-suppress MixedMethodCall */
+            $data = $coordinates->jsonSerialize();
+            if (! is_array($data)) {
+                throw new InvalidArgumentException('Serialized value needs to be an array');
+            }
+
+            return $data;
+        }
+
+        if (! is_array($coordinates)) {
+            throw new InvalidArgumentException('Coordinates have to be an instanceof \JsonSerializable or an array');
+        }
+
+        /** @psalm-var array<int,mixed>|JsonSerializable $value */
+        foreach ($coordinates as $key => $value) {
+            $coordinates[$key] = $this->serializeCoordinates($value);
+        }
+
+        return $coordinates;
     }
 }
