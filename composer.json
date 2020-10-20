@@ -1,35 +1,35 @@
 {
-    "name": "cowegis/cowegis-geojson",
-    "type": "library",
-    "description": "Cowegis GeoJSON - PHP GeoJSON specificiation implementation",
-    "keywords": [
-        "geosjon",
-        "gis",
-        "webgis"
-    ],
-    "license": "LGPL-3.0-or-later",
-    "authors": [
-        {
-            "name": "David Molineus",
-            "email": "david.molineus@netzmacht.de"
-        }
-    ],
-    "require": {
-        "php": "^7.2",
-        "ext-json": "*"
-    },
-    "require-dev": {
-        "doctrine/coding-standard": "^7.0",
-        "phpspec/phpspec": "^6.1"
-    },
-    "extra": {
-        "branch-alias": {
-            "dev-master": "1.0.x-dev"
-        }
-    },
-    "autoload": {
-        "psr-4": {
-            "Cowegis\\GeoJson\\": "src/"
-        }
+  "name": "cowegis/cowegis-geojson",
+  "type": "library",
+  "description": "Cowegis GeoJSON - PHP GeoJSON specificiation implementation",
+  "keywords": [
+    "geosjon",
+    "gis",
+    "webgis"
+  ],
+  "license": "LGPL-3.0-or-later",
+  "authors": [
+    {
+      "name": "David Molineus",
+      "email": "david.molineus@netzmacht.de"
     }
+  ],
+  "require": {
+    "php": "^7.2",
+    "ext-json": "*"
+  },
+  "require-dev": {
+    "doctrine/coding-standard": "^8.0",
+    "phpspec/phpspec": "^6.1"
+  },
+  "extra": {
+    "branch-alias": {
+      "dev-master": "1.0.x-dev"
+    }
+  },
+  "autoload": {
+    "psr-4": {
+      "Cowegis\\GeoJson\\": "src/"
+    }
+  }
 }

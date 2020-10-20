@@ -12,24 +12,24 @@ use PhpSpec\ObjectBehavior;
 
 final class MultiCoordinatesSpec extends ObjectBehavior
 {
-    public function let() : void
+    public function let(): void
     {
         $this->beConstructedWith(new Coordinates(0.0, 0.0), new Coordinates(1.0, 0.0, 0.5));
     }
 
-    public function it_is_initializable() : void
+    public function it_is_initializable(): void
     {
         $this->shouldHaveType(MultiCoordinates::class);
     }
 
-    public function it_is_countable() : void
+    public function it_is_countable(): void
     {
         $this->shouldImplement(Countable::class);
 
         $this->count()->shouldReturn(2);
     }
 
-    public function it_contains_coordinates() : void
+    public function it_contains_coordinates(): void
     {
         $this->coordinates()->shouldBeArray();
         $this->coordinates()->shouldHaveCount(2);
@@ -37,7 +37,7 @@ final class MultiCoordinatesSpec extends ObjectBehavior
         $this->coordinates()[1]->jsonSerialize()->shouldReturn([1.0, 0.0, 0.5]);
     }
 
-    public function it_is_json_serializable() : void
+    public function it_is_json_serializable(): void
     {
         $this->shouldImplement(JsonSerializable::class);
 

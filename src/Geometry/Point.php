@@ -10,15 +10,13 @@ use Cowegis\GeoJson\Position\Coordinates;
 
 final class Point extends GeometryWithCoordinates
 {
-    /** @var Coordinates */
+    /**
+     * @var Coordinates
+     */
     private $coordinates;
 
-    /**
-     * Point constructor.
-     *
-     * @param Coordinates $coordinates
-     */
-    public function __construct(Coordinates $coordinates,
+    public function __construct(
+        Coordinates $coordinates,
         ?BoundingBox $bbox = null,
         ?CoordinateReferenceSystem $crs = null
     ) {
@@ -27,17 +25,17 @@ final class Point extends GeometryWithCoordinates
         $this->coordinates = $coordinates;
     }
 
-    public function type() : string
+    public function type(): string
     {
         return self::POINT;
     }
 
-    public function coordinates() : Coordinates
+    public function coordinates(): Coordinates
     {
         return $this->coordinates;
     }
 
-    public function withoutCrs() : self
+    public function withoutCrs(): self
     {
         return new self($this->coordinates(), $this->boundingBox());
     }

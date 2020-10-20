@@ -6,11 +6,20 @@ namespace Cowegis\GeoJson\Geometry;
 
 use Cowegis\GeoJson\BaseGeoJsonObject;
 
+/**
+ * @psalm-template TCoordinates
+ */
 abstract class GeometryWithCoordinates extends BaseGeoJsonObject implements GeometryObject
 {
+    /**
+     * @return mixed
+     *
+     * @psalm-return TCoordinates
+     */
     abstract public function coordinates();
 
-    public function jsonSerialize() : array
+    /** @return array<string, mixed> */
+    public function jsonSerialize(): array
     {
         $data                = parent::jsonSerialize();
         $data['coordinates'] = $this->coordinates();

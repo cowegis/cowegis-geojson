@@ -10,7 +10,9 @@ use Cowegis\GeoJson\Position\Coordinates;
 
 final class MultiPoint extends GeometryWithCoordinates
 {
-    /** @var Coordinates */
+    /**
+     * @var Coordinates
+     */
     private $coordinates;
 
     public function __construct(
@@ -23,17 +25,17 @@ final class MultiPoint extends GeometryWithCoordinates
         $this->coordinates = $coordinates;
     }
 
-    public function type() : string
+    public function type(): string
     {
         return self::MULTI_POINT;
     }
 
-    public function coordinates() : Coordinates
+    public function coordinates(): Coordinates
     {
         return $this->coordinates;
     }
 
-    public function withoutCrs() : self
+    public function withoutCrs(): self
     {
         return new self($this->coordinates(), $this->boundingBox());
     }

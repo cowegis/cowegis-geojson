@@ -12,18 +12,21 @@ use JsonSerializable;
  *
  * The difference between ConvertsToGeoJson and this interface is that ConvertsToGeoJson can also contain content
  * which is not convertable to the GeoJson format.
+ *
+ * @psalm-template TValue
+ * @extends JsonSerializable<TValue>
  */
 interface GeoJsonObject extends JsonSerializable
 {
     public const FEATURE = 'Feature';
 
-    public  const FEATURE_COLLECTION = 'FeatureCollection';
+    public const FEATURE_COLLECTION = 'FeatureCollection';
 
-    public function type() : string;
+    public function type(): string;
 
-    public function crs() : ?CoordinateReferenceSystem;
+    public function crs(): ?CoordinateReferenceSystem;
 
-    public function boundingBox() : ?BoundingBox;
+    public function boundingBox(): ?BoundingBox;
 
     /**
      * Creates an instance without passing the bounding box.

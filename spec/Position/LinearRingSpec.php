@@ -12,7 +12,7 @@ use PhpSpec\ObjectBehavior;
 
 final class LinearRingSpec extends ObjectBehavior
 {
-    public function let() : void
+    public function let(): void
     {
         $this->beConstructedWith(
             new Coordinates(0, 0),
@@ -22,12 +22,12 @@ final class LinearRingSpec extends ObjectBehavior
         );
     }
 
-    public function it_is_initializable() : void
+    public function it_is_initializable(): void
     {
         $this->shouldHaveType(LinearRing::class);
     }
 
-    public function it_requires_at_least_four_coordinates() : void
+    public function it_requires_at_least_four_coordinates(): void
     {
         $this->beConstructedWith(
             new Coordinates(0, 0),
@@ -37,7 +37,7 @@ final class LinearRingSpec extends ObjectBehavior
         $this->shouldThrow(InvalidArgumentException::class)->duringInstantiation();
     }
 
-    public function it_requires_equal_start_and_end_coordinates() : void
+    public function it_requires_equal_start_and_end_coordinates(): void
     {
         $this->beConstructedWith(
             new Coordinates(0, 0),
@@ -48,7 +48,7 @@ final class LinearRingSpec extends ObjectBehavior
         $this->shouldThrow(InvalidArgumentException::class)->duringInstantiation();
     }
 
-    public function it_has_coordinates() : void
+    public function it_has_coordinates(): void
     {
         $this->coordinates()[0]->equals(new Coordinates(0, 0))->shouldReturn(true);
         $this->coordinates()[1]->equals(new Coordinates(1, 0))->shouldReturn(true);
@@ -56,7 +56,7 @@ final class LinearRingSpec extends ObjectBehavior
         $this->coordinates()[3]->equals(new Coordinates(0, 0))->shouldReturn(true);
     }
 
-    public function it_is_json_serializable() : void
+    public function it_is_json_serializable(): void
     {
         $this->shouldImplement(JsonSerializable::class);
         $this->jsonSerialize()->shouldBeArray();

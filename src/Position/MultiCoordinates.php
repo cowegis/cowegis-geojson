@@ -7,28 +7,37 @@ namespace Cowegis\GeoJson\Position;
 use Countable;
 use JsonSerializable;
 
+use function count;
+
 final class MultiCoordinates implements JsonSerializable, Countable
 {
-    /** @var Coordinates */
+    /**
+     * @var Coordinates[]
+     */
     private $positions;
 
-    public function __construct(Coordinates ... $positions)
+    public function __construct(Coordinates ...$positions)
     {
         $this->positions = $positions;
     }
 
-    public function count() : int
+    public function count(): int
     {
         return count($this->positions);
     }
 
-    /** @return Coordinates[] */
-    public function coordinates() : array
+    /**
+     * @return Coordinates[]
+     */
+    public function coordinates(): array
     {
         return $this->positions;
     }
 
-    public function jsonSerialize() : array
+    /**
+     * @return Coordinates[]
+     */
+    public function jsonSerialize(): array
     {
         return $this->coordinates();
     }

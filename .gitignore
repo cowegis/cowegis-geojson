@@ -1,0 +1,5 @@
+/vendor/
+/.phpcq/*
+!/.phpcq/local
+
+composer.lock

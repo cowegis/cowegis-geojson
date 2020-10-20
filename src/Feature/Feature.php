@@ -9,14 +9,20 @@ use Cowegis\GeoJson\BoundingBox;
 use Cowegis\GeoJson\CoordinateReferenceSystem\CoordinateReferenceSystem;
 use Cowegis\GeoJson\Geometry\GeometryObject;
 
+/** @extends BaseGeoJsonObject<GeometryObject> */
 final class Feature extends BaseGeoJsonObject
 {
-    /** @var GeometryObject */
+    /**
+     * @var GeometryObject
+     */
     private $geometry;
 
-    /** @var array */
+    /**
+     * @var array<string,mixed>
+     */
     private $properties;
 
+    /** @param array<string,mixed> $properties */
     public function __construct(
         GeometryObject $geometry,
         array $properties,
@@ -29,22 +35,24 @@ final class Feature extends BaseGeoJsonObject
         $this->properties = $properties;
     }
 
-    public function type() : string
+    public function type(): string
     {
         return self::FEATURE;
     }
 
-    public function geometry() : GeometryObject
+    public function geometry(): GeometryObject
     {
         return $this->geometry;
     }
 
-    public function properties() : array
+    /** @return array<string,mixed> */
+    public function properties(): array
     {
         return $this->properties;
     }
 
-    public function jsonSerialize() : array
+    /** @return array<string,mixed> */
+    public function jsonSerialize(): array
     {
         $data               = parent::jsonSerialize();
         $data['geometry']   = $this->geometry()->jsonSerialize();
@@ -53,7 +61,7 @@ final class Feature extends BaseGeoJsonObject
         return $data;
     }
 
-    public function withoutCrs() : self
+    public function withoutCrs(): self
     {
         return new self($this->geometry, $this->properties, $this->boundingBox());
     }

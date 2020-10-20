@@ -6,10 +6,14 @@ namespace Cowegis\GeoJson\CoordinateReferenceSystem;
 
 final class LinkedCoordinateReferenceSystem implements CoordinateReferenceSystem
 {
-    /** @var string */
+    /**
+     * @var string
+     */
     private $href;
 
-    /** @var string|null */
+    /**
+     * @var string|null
+     */
     private $type;
 
     public function __construct(string $href, ?string $type = null)
@@ -18,21 +22,29 @@ final class LinkedCoordinateReferenceSystem implements CoordinateReferenceSystem
         $this->type = $type;
     }
 
-    public function type() : string
+    public function type(): string
     {
         return 'link';
     }
 
-    public function properties() : array
+    /** @return array<string,string> */
+    public function properties(): array
     {
+        return [
+            'name' => $this->href,
+            'type' => $this->type()
+        ];
         $data = ['name' => $this->href];
-        if ($this->type() !== null) {
-            $data['type'] = $this->type;
+        $type = $this->type();
+
+        if ($type !== null) {
+            $data['type'] = $type;
         }
 
         return $data;
     }
 
+    /** @return array<string,mixed> */
     public function jsonSerialize()
     {
         return [
@@ -41,7 +53,7 @@ final class LinkedCoordinateReferenceSystem implements CoordinateReferenceSystem
         ];
     }
 
-    public function equals(CoordinateReferenceSystem $crs) : bool
+    public function equals(CoordinateReferenceSystem $crs): bool
     {
         if (! $crs instanceof self) {
             return false;

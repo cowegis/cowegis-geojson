@@ -10,7 +10,9 @@ use Cowegis\GeoJson\Position\MultiLineCoordinates;
 
 final class MultiLineString extends GeometryWithCoordinates
 {
-    /** @var MultiLineCoordinates */
+    /**
+     * @var MultiLineCoordinates
+     */
     private $coordinates;
 
     public function __construct(
@@ -23,17 +25,17 @@ final class MultiLineString extends GeometryWithCoordinates
         $this->coordinates = $coordinates;
     }
 
-    public function type() : string
+    public function type(): string
     {
         return self::MULTI_LINE_STRING;
     }
 
-    public function coordinates() : MultiLineCoordinates
+    public function coordinates(): MultiLineCoordinates
     {
         return $this->coordinates;
     }
 
-    public function withoutCrs() : self
+    public function withoutCrs(): self
     {
         return new self($this->coordinates(), $this->boundingBox());
     }

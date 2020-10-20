@@ -6,7 +6,9 @@ namespace Cowegis\GeoJson\CoordinateReferenceSystem;
 
 final class NamedCoordinateReferenceSystem implements CoordinateReferenceSystem
 {
-    /** @var string */
+    /**
+     * @var string
+     */
     private $name;
 
     public function __construct(string $name)
@@ -14,19 +16,25 @@ final class NamedCoordinateReferenceSystem implements CoordinateReferenceSystem
         $this->name = $name;
     }
 
-    public function type() : string
+    public function type(): string
     {
         return 'name';
     }
 
-    public function properties() : array
+    /**
+     * @return array<string,string>
+     *
+     * @psalm-return array{name: string}
+     */
+    public function properties(): array
     {
         return [
             'name' => $this->name,
         ];
     }
 
-    public function jsonSerialize()
+    /** @return array<string,mixed> */
+    public function jsonSerialize(): array
     {
         return [
             'type'       => $this->type(),
@@ -34,7 +42,7 @@ final class NamedCoordinateReferenceSystem implements CoordinateReferenceSystem
         ];
     }
 
-    public function equals(CoordinateReferenceSystem $crs) : bool
+    public function equals(CoordinateReferenceSystem $crs): bool
     {
         if (! $crs instanceof self) {
             return false;

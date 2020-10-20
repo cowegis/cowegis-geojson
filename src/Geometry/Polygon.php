@@ -10,15 +10,16 @@ use Cowegis\GeoJson\Position\LinearRing;
 
 final class Polygon extends GeometryWithCoordinates
 {
-    /** @var LinearRing[] */
+    /**
+     * @var LinearRing[]
+     */
     private $coordinates;
 
     /**
-     * Polygon constructor.
-     *
      * @param LinearRing[] $coordinates
      */
-    public function __construct(array $coordinates,
+    public function __construct(
+        array $coordinates,
         ?BoundingBox $bbox = null,
         ?CoordinateReferenceSystem $crs = null
     ) {
@@ -27,18 +28,20 @@ final class Polygon extends GeometryWithCoordinates
         $this->coordinates = $coordinates;
     }
 
-    public function type() : string
+    public function type(): string
     {
         return self::POLYGON;
     }
 
-    /** @return LinearRing[] */
-    public function coordinates() : array
+    /**
+     * @return LinearRing[]
+     */
+    public function coordinates(): array
     {
         return $this->coordinates;
     }
 
-    public function withoutCrs() : self
+    public function withoutCrs(): self
     {
         return new self($this->coordinates(), $this->boundingBox());
     }

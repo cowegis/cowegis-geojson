@@ -5,58 +5,66 @@ declare(strict_types=1);
 namespace Cowegis\GeoJson;
 
 use Cowegis\GeoJson\CoordinateReferenceSystem\CoordinateReferenceSystem;
+use InvalidArgumentException;
 
+/** @psalm-template TGeoJsonObject */
 abstract class BaseGeoJsonObject implements GeoJsonObject
 {
-    /** @var CoordinateReferenceSystem|null */
-    private $crs;
-
-    /** @var BoundingBox|null */
+    /**
+     * @var BoundingBox|null
+     */
     private $boundingBox;
 
-    public function __construct(?BoundingBox $boundingBox = null, ?CoordinateReferenceSystem $crs = null)
+    public function __construct(?BoundingBox $boundingBox = null)
     {
-        $this->crs         = $crs;
         $this->boundingBox = $boundingBox;
     }
 
-    public function crs() : ?CoordinateReferenceSystem
+    public function crs(): ?CoordinateReferenceSystem
     {
         return $this->crs;
     }
 
-    public function boundingBox() : ?BoundingBox
+    public function boundingBox(): ?BoundingBox
     {
         return $this->boundingBox;
     }
 
-    public function jsonSerialize() : array
+    /** @return array<string,mixed> */
+    public function jsonSerialize(): array
     {
         $data = ['type' => $this->type()];
+        $crs  = $this->crs();
 
-        if ($this->crs()) {
-            $data['crs'] = $this->crs()->jsonSerialize();
+        if ($crs !== null) {
+            $data['crs'] = $crs->jsonSerialize();
         }
 
-        if ($this->boundingBox()) {
-            $data['bbox'] = $this->boundingBox()->jsonSerialize();
+        $boundingBox = $this->boundingBox();
+        if ($boundingBox !== null) {
+            $data['bbox'] = $boundingBox->jsonSerialize();
         }
 
         return $data;
     }
 
-    protected function validateCrs(GeoJsonObject $object, ?CoordinateReferenceSystem $crs) : GeoJsonObject
+    /**
+     * @psalm-param TGeoJsonObject&GeoJsonObject $object
+     * @psalm-return TGeoJsonObject&GeoJsonObject
+     */
+    protected function validateCrs(GeoJsonObject $object, ?CoordinateReferenceSystem $crs): GeoJsonObject
     {
-        if ($object->crs() === null) {
+        $objectCrs = $object->crs();
+        if ($objectCrs === null) {
             return $object;
         }
 
         if ($crs === null) {
-            throw new \InvalidArgumentException();
+            throw new InvalidArgumentException();
         }
 
-        if (! $object->crs()->equals($crs)) {
-            throw new \InvalidArgumentException();
+        if (! $objectCrs->equals($crs)) {
+            throw new InvalidArgumentException();
         }
 
         return $object->withoutCrs();

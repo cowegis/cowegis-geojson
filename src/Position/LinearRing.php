@@ -7,12 +7,17 @@ namespace Cowegis\GeoJson\Position;
 use Cowegis\GeoJson\Exception\InvalidArgumentException;
 use JsonSerializable;
 
+use function count;
+use function sprintf;
+
 final class LinearRing implements JsonSerializable
 {
-    /** @var Coordinates */
+    /**
+     * @var Coordinates[]
+     */
     private $coordinates;
 
-    public function __construct(Coordinates ... $coordinates)
+    public function __construct(Coordinates ...$coordinates)
     {
         $count = count($coordinates);
         if ($count < 4) {
@@ -29,12 +34,15 @@ final class LinearRing implements JsonSerializable
     /**
      * @return Coordinates[]
      */
-    public function coordinates() : array
+    public function coordinates(): array
     {
         return $this->coordinates;
     }
 
-    public function jsonSerialize() : array
+    /**
+     * @return Coordinates[]
+     */
+    public function jsonSerialize(): array
     {
         return $this->coordinates();
     }
