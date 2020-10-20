@@ -31,5 +31,10 @@
     "psr-4": {
       "Cowegis\\GeoJson\\": "src/"
     }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "spec\\Cowegis\\GeoJson\\": "spec/"
+    }
   }
 }

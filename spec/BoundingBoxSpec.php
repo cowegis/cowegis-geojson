@@ -63,4 +63,16 @@ final class BoundingBoxSpec extends ObjectBehavior
 
         $this->jsonSerialize()->shouldReturn([100.0, 0.0, 50.0, 105.0, 1.0, 20.0]);
     }
+
+    public function it_validates_correct_order_of_longitude_of_coordinates(): void
+    {
+        $this->beConstructedWith(new Coordinates(100.0, 0.0), new Coordinates(90.0, 0.0));
+        $this->shouldThrow(InvalidArgumentException::class)->duringInstantiation();
+    }
+
+    public function it_validatescorrect_order_of__latitude_of_coordinates(): void
+    {
+        $this->beConstructedWith(new Coordinates(100.0, 2.0), new Coordinates(105.0, 0.0));
+        $this->shouldThrow(InvalidArgumentException::class)->duringInstantiation();
+    }
 }

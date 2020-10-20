@@ -8,6 +8,8 @@ use Cowegis\GeoJson\Exception\InvalidArgumentException;
 use Cowegis\GeoJson\Position\Coordinates;
 use JsonSerializable;
 
+use function sprintf;
+
 /**
  * @psalm-type TSerialized2DBoundingBox = array{0: float, 1: float, 2: float, 3:float}
  * @psalm-type TSerialized3DBoundingBox = array{0: float, 1: float, 2: float, 3:float, 4: float, 5:float}
@@ -23,7 +25,25 @@ final class BoundingBox implements JsonSerializable
 
     public function __construct(Coordinates $southWest, Coordinates $northEast)
     {
-        // TODO: Validate both coordinates if the most south western is used as $southWest
+        if ($southWest->longitude() > $northEast->longitude()) {
+            throw new InvalidArgumentException(
+                sprintf(
+                    'South west longitude "%s" is not more western than north east longitude "%s"',
+                    $southWest->longitude(),
+                    $northEast->longitude()
+                )
+            );
+        }
+
+        if ($southWest->latitude() > $northEast->latitude()) {
+            throw new InvalidArgumentException(
+                sprintf(
+                    'South west latitude "%s" is not more southern than north east latitude "%s"',
+                    $southWest->latitude(),
+                    $northEast->latitude()
+                )
+            );
+        }
 
         if ($southWest->altitude() === null && $northEast->altitude() !== null) {
             throw new InvalidArgumentException('North east coordinates contains altitude but south west doesn\t.');
