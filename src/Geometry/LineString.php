@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Cowegis\GeoJson\Geometry;
 
 use Cowegis\GeoJson\BoundingBox;
-use Cowegis\GeoJson\CoordinateReferenceSystem\CoordinateReferenceSystem;
 use Cowegis\GeoJson\Position\MultiCoordinates;
 use InvalidArgumentException;
 
@@ -20,10 +19,9 @@ final class LineString extends GeometryWithCoordinates
 
     public function __construct(
         MultiCoordinates $coordinates,
-        ?BoundingBox $bbox = null,
-        ?CoordinateReferenceSystem $crs = null
+        ?BoundingBox $bbox = null
     ) {
-        parent::__construct($bbox, $crs);
+        parent::__construct($bbox);
 
         if (count($coordinates) < 2) {
             throw new InvalidArgumentException();
@@ -40,10 +38,5 @@ final class LineString extends GeometryWithCoordinates
     public function coordinates(): MultiCoordinates
     {
         return $this->coordinates;
-    }
-
-    public function withoutCrs(): self
-    {
-        return new self($this->coordinates, $this->boundingBox());
     }
 }

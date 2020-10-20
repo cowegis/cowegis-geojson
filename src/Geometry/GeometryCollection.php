@@ -6,7 +6,6 @@ namespace Cowegis\GeoJson\Geometry;
 
 use Cowegis\GeoJson\BaseGeoJsonObject;
 use Cowegis\GeoJson\BoundingBox;
-use Cowegis\GeoJson\CoordinateReferenceSystem\CoordinateReferenceSystem;
 
 /** @extends BaseGeoJsonObject<GeometryObject> */
 final class GeometryCollection extends BaseGeoJsonObject implements GeometryObject
@@ -21,10 +20,9 @@ final class GeometryCollection extends BaseGeoJsonObject implements GeometryObje
      */
     public function __construct(
         array $geometries,
-        ?BoundingBox $boundingBox = null,
-        ?CoordinateReferenceSystem $crs = null
+        ?BoundingBox $boundingBox = null
     ) {
-        parent::__construct($boundingBox, $crs);
+        parent::__construct($boundingBox);
 
         foreach ($geometries as $geometry) {
             $this->append($geometry);
@@ -33,7 +31,7 @@ final class GeometryCollection extends BaseGeoJsonObject implements GeometryObje
 
     private function append(GeometryObject $geometry): void
     {
-        $this->geometries[] = $this->validateCrs($geometry, $this->crs());
+        $this->geometries[] = $geometry;
     }
 
     public function type(): string
@@ -45,11 +43,6 @@ final class GeometryCollection extends BaseGeoJsonObject implements GeometryObje
     public function geometries(): array
     {
         return $this->geometries;
-    }
-
-    public function withoutCrs(): self
-    {
-        return new self($this->geometries(), $this->boundingBox());
     }
 
     /** @return array<string,mixed> */

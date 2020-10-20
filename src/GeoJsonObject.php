@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Cowegis\GeoJson;
 
-use Cowegis\GeoJson\CoordinateReferenceSystem\CoordinateReferenceSystem;
 use JsonSerializable;
 
 /**
@@ -24,14 +23,5 @@ interface GeoJsonObject extends JsonSerializable
 
     public function type(): string;
 
-    public function crs(): ?CoordinateReferenceSystem;
-
     public function boundingBox(): ?BoundingBox;
-
-    /**
-     * Creates an instance without passing the bounding box.
-     *
-     * @return static
-     */
-    public function withoutCrs();
 }

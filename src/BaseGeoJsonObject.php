@@ -4,9 +4,6 @@ declare(strict_types=1);
 
 namespace Cowegis\GeoJson;
 
-use Cowegis\GeoJson\CoordinateReferenceSystem\CoordinateReferenceSystem;
-use InvalidArgumentException;
-
 /** @psalm-template TGeoJsonObject */
 abstract class BaseGeoJsonObject implements GeoJsonObject
 {
@@ -20,11 +17,6 @@ abstract class BaseGeoJsonObject implements GeoJsonObject
         $this->boundingBox = $boundingBox;
     }
 
-    public function crs(): ?CoordinateReferenceSystem
-    {
-        return $this->crs;
-    }
-
     public function boundingBox(): ?BoundingBox
     {
         return $this->boundingBox;
@@ -34,11 +26,6 @@ abstract class BaseGeoJsonObject implements GeoJsonObject
     public function jsonSerialize(): array
     {
         $data = ['type' => $this->type()];
-        $crs  = $this->crs();
-
-        if ($crs !== null) {
-            $data['crs'] = $crs->jsonSerialize();
-        }
 
         $boundingBox = $this->boundingBox();
         if ($boundingBox !== null) {
@@ -46,27 +33,5 @@ abstract class BaseGeoJsonObject implements GeoJsonObject
         }
 
         return $data;
-    }
-
-    /**
-     * @psalm-param TGeoJsonObject&GeoJsonObject $object
-     * @psalm-return TGeoJsonObject&GeoJsonObject
-     */
-    protected function validateCrs(GeoJsonObject $object, ?CoordinateReferenceSystem $crs): GeoJsonObject
-    {
-        $objectCrs = $object->crs();
-        if ($objectCrs === null) {
-            return $object;
-        }
-
-        if ($crs === null) {
-            throw new InvalidArgumentException();
-        }
-
-        if (! $objectCrs->equals($crs)) {
-            throw new InvalidArgumentException();
-        }
-
-        return $object->withoutCrs();
     }
 }

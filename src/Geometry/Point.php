@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Cowegis\GeoJson\Geometry;
 
 use Cowegis\GeoJson\BoundingBox;
-use Cowegis\GeoJson\CoordinateReferenceSystem\CoordinateReferenceSystem;
 use Cowegis\GeoJson\Position\Coordinates;
 
 final class Point extends GeometryWithCoordinates
@@ -17,10 +16,9 @@ final class Point extends GeometryWithCoordinates
 
     public function __construct(
         Coordinates $coordinates,
-        ?BoundingBox $bbox = null,
-        ?CoordinateReferenceSystem $crs = null
+        ?BoundingBox $bbox = null
     ) {
-        parent::__construct($bbox, $crs);
+        parent::__construct($bbox);
 
         $this->coordinates = $coordinates;
     }
@@ -33,10 +31,5 @@ final class Point extends GeometryWithCoordinates
     public function coordinates(): Coordinates
     {
         return $this->coordinates;
-    }
-
-    public function withoutCrs(): self
-    {
-        return new self($this->coordinates(), $this->boundingBox());
     }
 }

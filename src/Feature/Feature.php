@@ -6,7 +6,6 @@ namespace Cowegis\GeoJson\Feature;
 
 use Cowegis\GeoJson\BaseGeoJsonObject;
 use Cowegis\GeoJson\BoundingBox;
-use Cowegis\GeoJson\CoordinateReferenceSystem\CoordinateReferenceSystem;
 use Cowegis\GeoJson\Geometry\GeometryObject;
 
 /** @extends BaseGeoJsonObject<GeometryObject> */
@@ -26,12 +25,11 @@ final class Feature extends BaseGeoJsonObject
     public function __construct(
         GeometryObject $geometry,
         array $properties,
-        ?BoundingBox $bbox = null,
-        ?CoordinateReferenceSystem $crs = null
+        ?BoundingBox $bbox = null
     ) {
-        parent::__construct($bbox, $crs);
+        parent::__construct($bbox);
 
-        $this->geometry   = $this->validateCrs($geometry, $crs);
+        $this->geometry   = $geometry;
         $this->properties = $properties;
     }
 
@@ -59,10 +57,5 @@ final class Feature extends BaseGeoJsonObject
         $data['properties'] = $this->properties();
 
         return $data;
-    }
-
-    public function withoutCrs(): self
-    {
-        return new self($this->geometry, $this->properties, $this->boundingBox());
     }
 }
