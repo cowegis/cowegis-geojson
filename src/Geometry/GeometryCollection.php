@@ -7,15 +7,28 @@ namespace Cowegis\GeoJson\Geometry;
 use Cowegis\GeoJson\BaseGeoJsonObject;
 use Cowegis\GeoJson\BoundingBox;
 
+use function array_map;
+
+/**
+ * @psalm-import-type TSerializedBoundingBox from \Cowegis\GeoJson\BoundingBox
+ * @psalm-type TSerializedGeometryCollection = array{
+ *   type: 'GeometryCollection',
+ *   geometries: list<array<string,mixed>>,
+ *   bbox?: TSerializedBoundingBox
+ * }
+ */
 final class GeometryCollection extends BaseGeoJsonObject implements GeometryObject
 {
     /**
      * @var GeometryObject[]
+     * @psalm-var list<GeometryObject>
      */
     private $geometries = [];
 
     /**
      * @param GeometryObject[] $geometries
+     *
+     * @psalm-param list<GeometryObject> $geometries
      */
     public function __construct(
         array $geometries,
@@ -38,17 +51,30 @@ final class GeometryCollection extends BaseGeoJsonObject implements GeometryObje
         return self::GEOMETRY_COLLECTION;
     }
 
-    /** @return GeometryObject[] */
+    /**
+     * @return GeometryObject[]
+     *
+     * @psalm-return list<GeometryObject>
+     */
     public function geometries(): array
     {
         return $this->geometries;
     }
 
-    /** @return array<string,mixed> */
+    /**
+     * @return array<string,mixed>
+     *
+     * @psalm-return TSerializedGeometryCollection
+     */
     public function jsonSerialize(): array
     {
         $data               = parent::jsonSerialize();
-        $data['geometries'] = $this->geometries();
+        $data['geometries'] = array_map(
+            static function (GeometryObject $geometryObject): array {
+                return $geometryObject->jsonSerialize();
+            },
+            $this->geometries()
+        );
 
         return $data;
     }

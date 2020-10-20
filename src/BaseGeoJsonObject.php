@@ -5,9 +5,10 @@ declare(strict_types=1);
 namespace Cowegis\GeoJson;
 
 /**
+ * @psalm-import-type TSerializedBoundingBox from \Cowegis\GeoJson\BoundingBox
  * @psalm-type TSerializedBaseGeoJsonObject = array{
  *   type: string,
- *   bbox?: array<mixed,mixed>
+ *   bbox?: TSerializedBoundingBox
  * }
  */
 abstract class BaseGeoJsonObject implements GeoJsonObject
@@ -29,6 +30,8 @@ abstract class BaseGeoJsonObject implements GeoJsonObject
 
     /**
      * @return array<string,mixed>
+     *
+     * @psalm-return TSerializedBaseGeoJsonObject
      */
     public function jsonSerialize(): array
     {

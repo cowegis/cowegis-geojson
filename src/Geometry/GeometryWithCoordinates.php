@@ -8,6 +8,12 @@ use Cowegis\GeoJson\BaseGeoJsonObject;
 
 /**
  * @psalm-template TCoordinates
+ * @psalm-import-type TSerializedBoundingBox from \Cowegis\GeoJson\BoundingBox
+ * @psalm-type TSerializedGeometryWithCoordinates = array{
+ *   type: string,
+ *   coordinates: mixed,
+ *   bbox?: TSerializedBoundingBox
+ * }
  */
 abstract class GeometryWithCoordinates extends BaseGeoJsonObject implements GeometryObject
 {
@@ -20,6 +26,8 @@ abstract class GeometryWithCoordinates extends BaseGeoJsonObject implements Geom
 
     /**
      * @return array<string, mixed>
+     *
+     * @psalm-return TSerializedGeometryWithCoordinates
      */
     public function jsonSerialize(): array
     {
