@@ -7,15 +7,19 @@ namespace Cowegis\GeoJson\Geometry;
 use Cowegis\GeoJson\BoundingBox;
 use Cowegis\GeoJson\Position\LinearRing;
 
+/** @extends GeometryWithCoordinates<list<LinearRing>> */
 final class Polygon extends GeometryWithCoordinates
 {
     /**
      * @var LinearRing[]
+     * @psalm-var list<LinearRing>
      */
     private $coordinates;
 
     /**
      * @param LinearRing[] $coordinates
+     *
+     * @psalm-param list<LinearRing> $coordinates
      */
     public function __construct(
         array $coordinates,
@@ -33,6 +37,8 @@ final class Polygon extends GeometryWithCoordinates
 
     /**
      * @return LinearRing[]
+     *
+     * @psalm-return list<LinearRing>
      */
     public function coordinates(): array
     {

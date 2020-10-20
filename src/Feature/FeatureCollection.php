@@ -7,7 +7,6 @@ namespace Cowegis\GeoJson\Feature;
 use Cowegis\GeoJson\BaseGeoJsonObject;
 use Cowegis\GeoJson\BoundingBox;
 
-/** @extends BaseGeoJsonObject<Feature> */
 final class FeatureCollection extends BaseGeoJsonObject
 {
     /**

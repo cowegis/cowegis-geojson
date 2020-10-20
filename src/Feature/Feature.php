@@ -8,7 +8,9 @@ use Cowegis\GeoJson\BaseGeoJsonObject;
 use Cowegis\GeoJson\BoundingBox;
 use Cowegis\GeoJson\Geometry\GeometryObject;
 
-/** @extends BaseGeoJsonObject<GeometryObject> */
+/**
+ * @psalm-template TGeometry
+ */
 final class Feature extends BaseGeoJsonObject
 {
     /**

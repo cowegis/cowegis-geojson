@@ -6,7 +6,6 @@ namespace Cowegis\GeoJson\Geometry;
 
 use Cowegis\GeoJson\GeoJsonObject;
 
-/** @extends GeoJsonObject<array<string,mixed>> */
 interface GeometryObject extends GeoJsonObject
 {
     public const POINT               = 'Point';

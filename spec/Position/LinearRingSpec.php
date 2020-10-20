@@ -61,9 +61,9 @@ final class LinearRingSpec extends ObjectBehavior
         $this->shouldImplement(JsonSerializable::class);
         $this->jsonSerialize()->shouldBeArray();
         $this->jsonSerialize()->shouldHaveCount(4);
-        $this->jsonSerialize()[0]->equals(new Coordinates(0, 0))->shouldReturn(true);
-        $this->jsonSerialize()[1]->equals(new Coordinates(1, 0))->shouldReturn(true);
-        $this->jsonSerialize()[2]->equals(new Coordinates(2, 0))->shouldReturn(true);
-        $this->jsonSerialize()[3]->equals(new Coordinates(0, 0))->shouldReturn(true);
+        $this->jsonSerialize()[0]->shouldReturn([0.0, 0.0]);
+        $this->jsonSerialize()[1]->shouldReturn([1.0, 0.0]);
+        $this->jsonSerialize()[2]->shouldReturn([2.0, 0.0]);
+        $this->jsonSerialize()[3]->shouldReturn([0.0, 0.0]);
     }
 }

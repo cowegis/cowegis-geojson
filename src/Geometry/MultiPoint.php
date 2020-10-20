@@ -5,19 +5,15 @@ declare(strict_types=1);
 namespace Cowegis\GeoJson\Geometry;
 
 use Cowegis\GeoJson\BoundingBox;
-use Cowegis\GeoJson\Position\Coordinates;
+use Cowegis\GeoJson\Position\MultiCoordinates;
 
 final class MultiPoint extends GeometryWithCoordinates
 {
-    /**
-     * @var Coordinates
-     */
+    /** @var MultiCoordinates */
     private $coordinates;
 
-    public function __construct(
-        Coordinates $coordinates,
-        ?BoundingBox $bbox = null
-    ) {
+    public function __construct(MultiCoordinates $coordinates, ?BoundingBox $bbox = null)
+    {
         parent::__construct($bbox);
 
         $this->coordinates = $coordinates;
@@ -28,7 +24,7 @@ final class MultiPoint extends GeometryWithCoordinates
         return self::MULTI_POINT;
     }
 
-    public function coordinates(): Coordinates
+    public function coordinates(): MultiCoordinates
     {
         return $this->coordinates;
     }

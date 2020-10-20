@@ -18,7 +18,9 @@ abstract class GeometryWithCoordinates extends BaseGeoJsonObject implements Geom
      */
     abstract public function coordinates();
 
-    /** @return array<string, mixed> */
+    /**
+     * @return array<string, mixed>
+     */
     public function jsonSerialize(): array
     {
         $data                = parent::jsonSerialize();

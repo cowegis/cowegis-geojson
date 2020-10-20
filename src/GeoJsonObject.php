@@ -8,12 +8,6 @@ use JsonSerializable;
 
 /**
  * Interface GeoJsonObject is a marker for objects which a full geo json object representations.
- *
- * The difference between ConvertsToGeoJson and this interface is that ConvertsToGeoJson can also contain content
- * which is not convertable to the GeoJson format.
- *
- * @psalm-template TValue
- * @extends JsonSerializable<TValue>
  */
 interface GeoJsonObject extends JsonSerializable
 {
@@ -24,4 +18,7 @@ interface GeoJsonObject extends JsonSerializable
     public function type(): string;
 
     public function boundingBox(): ?BoundingBox;
+
+    /** @return array<string,mixed> */
+    public function jsonSerialize(): array;
 }

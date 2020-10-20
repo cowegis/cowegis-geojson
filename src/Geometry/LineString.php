@@ -10,6 +10,7 @@ use InvalidArgumentException;
 
 use function count;
 
+/** @extends GeometryWithCoordinates<MultiCoordinates> */
 final class LineString extends GeometryWithCoordinates
 {
     /**

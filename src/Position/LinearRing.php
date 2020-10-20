@@ -7,13 +7,18 @@ namespace Cowegis\GeoJson\Position;
 use Cowegis\GeoJson\Exception\InvalidArgumentException;
 use JsonSerializable;
 
+use function array_map;
 use function count;
 use function sprintf;
 
+/**
+ * @psalm-import-type TSerializedCoordinates from \Cowegis\GeoJson\Position\Coordinates
+ */
 final class LinearRing implements JsonSerializable
 {
     /**
      * @var Coordinates[]
+     * @psalm-var list<Coordinates>
      */
     private $coordinates;
 
@@ -33,6 +38,8 @@ final class LinearRing implements JsonSerializable
 
     /**
      * @return Coordinates[]
+     *
+     * @psalm-return list<Coordinates>
      */
     public function coordinates(): array
     {
@@ -40,10 +47,17 @@ final class LinearRing implements JsonSerializable
     }
 
     /**
-     * @return Coordinates[]
+     * @return array<int, array<string,float>>
+     *
+     * @psalm-return list<TSerializedCoordinates>
      */
     public function jsonSerialize(): array
     {
-        return $this->coordinates();
+        return array_map(
+            static function (Coordinates $coordinates) {
+                return $coordinates->jsonSerialize();
+            },
+            $this->coordinates()
+        );
     }
 }

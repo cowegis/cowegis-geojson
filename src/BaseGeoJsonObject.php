@@ -4,7 +4,12 @@ declare(strict_types=1);
 
 namespace Cowegis\GeoJson;
 
-/** @psalm-template TGeoJsonObject */
+/**
+ * @psalm-type TSerializedBaseGeoJsonObject = array{
+ *   type: string,
+ *   bbox?: array<mixed,mixed>
+ * }
+ */
 abstract class BaseGeoJsonObject implements GeoJsonObject
 {
     /**
@@ -22,7 +27,9 @@ abstract class BaseGeoJsonObject implements GeoJsonObject
         return $this->boundingBox;
     }
 
-    /** @return array<string,mixed> */
+    /**
+     * @return array<string,mixed>
+     */
     public function jsonSerialize(): array
     {
         $data = ['type' => $this->type()];

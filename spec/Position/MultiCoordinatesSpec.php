@@ -43,7 +43,7 @@ final class MultiCoordinatesSpec extends ObjectBehavior
 
         $this->jsonSerialize()->shouldBeArray();
         $this->jsonSerialize()->shouldHaveCount(2);
-        $this->jsonSerialize()[0]->jsonSerialize()->shouldReturn([0.0, 0.0]);
-        $this->jsonSerialize()[1]->jsonSerialize()->shouldReturn([1.0, 0.0, 0.5]);
+        $this->jsonSerialize()[0]->shouldReturn([0.0, 0.0]);
+        $this->jsonSerialize()[1]->shouldReturn([1.0, 0.0, 0.5]);
     }
 }

@@ -6,8 +6,10 @@ namespace Cowegis\GeoJson;
 
 use JsonSerializable;
 
-/** @extends JsonSerializable<array<string,mixed>> */
 interface BoundingBox extends JsonSerializable
 {
     // TODO: Implement bounding boxes for each geometry/feature
+
+    /** @return array<mixed,mixed> */
+    public function jsonSerialize(): array;
 }

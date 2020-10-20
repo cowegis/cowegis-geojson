@@ -7,6 +7,7 @@ namespace Cowegis\GeoJson\Geometry;
 use Cowegis\GeoJson\BoundingBox;
 use Cowegis\GeoJson\Position\MultiLineCoordinates;
 
+/** @extends GeometryWithCoordinates<MultiLineCoordinates> */
 final class MultiLineString extends GeometryWithCoordinates
 {
     /**

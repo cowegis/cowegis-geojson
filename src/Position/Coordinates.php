@@ -7,7 +7,7 @@ namespace Cowegis\GeoJson\Position;
 use JsonSerializable;
 
 /**
- * @psalm-type TCoordinates = array{0: float, 1: float, 2?: float}
+ * @psalm-type TSerializedCoordinates = array{0: float, 1: float, 2?: float}
  */
 final class Coordinates implements JsonSerializable
 {
@@ -64,7 +64,7 @@ final class Coordinates implements JsonSerializable
     /**
      * @return array<int,float>
      *
-     * @psalm-return TCoordinates
+     * @psalm-return TSerializedCoordinates
      */
     public function jsonSerialize(): array
     {

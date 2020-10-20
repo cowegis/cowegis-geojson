@@ -7,6 +7,7 @@ namespace Cowegis\GeoJson\Geometry;
 use Cowegis\GeoJson\BoundingBox;
 use Cowegis\GeoJson\Position\Coordinates;
 
+/** @extends GeometryWithCoordinates<Coordinates> */
 final class Point extends GeometryWithCoordinates
 {
     /**
