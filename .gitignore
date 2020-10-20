@@ -3,3 +3,4 @@
 !/.phpcq/local
 
 composer.lock
+.phpcs-cache
