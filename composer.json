@@ -1,7 +1,7 @@
 {
   "name": "cowegis/cowegis-geojson",
   "type": "library",
-  "description": "Cowegis GeoJSON - PHP GeoJSON specificiation implementation",
+  "description": "Cowegis GeoJSON - PHP GeoJSON specification (RFC 7946) implementation",
   "keywords": [
     "geosjon",
     "gis",
