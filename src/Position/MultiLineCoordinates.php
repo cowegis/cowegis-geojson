@@ -4,15 +4,19 @@ declare(strict_types=1);
 
 namespace Cowegis\GeoJson\Position;
 
+use Countable;
 use InvalidArgumentException;
 use JsonSerializable;
 
+use function array_map;
 use function count;
 
-final class MultiLineCoordinates implements JsonSerializable
+/** @psalm-import-type TSerializedCoordinates from \Cowegis\GeoJson\Position\Coordinates */
+final class MultiLineCoordinates implements JsonSerializable, Countable
 {
     /**
      * @var MultiCoordinates[]
+     * @psalm-var list<MultiCoordinates>
      */
     private $coordinates;
 
@@ -29,17 +33,31 @@ final class MultiLineCoordinates implements JsonSerializable
 
     /**
      * @return MultiCoordinates[]
+     *
+     * @psalm-return list<MultiCoordinates>
      */
     public function coordinates(): array
     {
         return $this->coordinates;
     }
 
+    public function count(): int
+    {
+        return count($this->coordinates);
+    }
+
     /**
-     * @return MultiCoordinates[]
+     * @return float[][][]
+     *
+     * @psalm-return list<list<TSerializedCoordinates>>
      */
     public function jsonSerialize(): array
     {
-        return $this->coordinates;
+        return array_map(
+            static function (MultiCoordinates $coordinates) {
+                return $coordinates->jsonSerialize();
+            },
+            $this->coordinates()
+        );
     }
 }
