@@ -10,10 +10,7 @@ use Cowegis\GeoJson\Position\Coordinates;
 /** @extends GeometryWithCoordinates<Coordinates> */
 final class Point extends GeometryWithCoordinates
 {
-    /**
-     * @var Coordinates
-     */
-    private $coordinates;
+    private Coordinates $coordinates;
 
     public function __construct(
         Coordinates $coordinates,

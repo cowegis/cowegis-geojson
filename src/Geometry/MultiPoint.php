@@ -9,8 +9,7 @@ use Cowegis\GeoJson\Position\MultiCoordinates;
 
 final class MultiPoint extends GeometryWithCoordinates
 {
-    /** @var MultiCoordinates */
-    private $coordinates;
+    private MultiCoordinates $coordinates;
 
     public function __construct(MultiCoordinates $coordinates, ?BoundingBox $bbox = null)
     {

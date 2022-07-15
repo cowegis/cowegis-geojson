@@ -11,20 +11,11 @@ use JsonSerializable;
  */
 final class Coordinates implements JsonSerializable
 {
-    /**
-     * @var float
-     */
-    private $longitude;
+    private float $longitude;
 
-    /**
-     * @var float
-     */
-    private $latitude;
+    private float $latitude;
 
-    /**
-     * @var float|null
-     */
-    private $altitude;
+    private ?float $altitude = null;
 
     public function __construct(float $longitude, float $latitude, ?float $altitude = null)
     {
@@ -63,7 +54,6 @@ final class Coordinates implements JsonSerializable
 
     /**
      * @return array<int,float>
-     *
      * @psalm-return TSerializedCoordinates
      */
     public function jsonSerialize(): array

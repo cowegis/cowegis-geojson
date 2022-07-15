@@ -9,7 +9,7 @@ use Cowegis\GeoJson\BoundingBox;
 use Cowegis\GeoJson\Geometry\GeometryObject;
 
 /**
- * @psalm-import-type TSerializedBoundingBox from \Cowegis\GeoJson\BoundingBox
+ * @psalm-import-type TSerializedBoundingBox from BoundingBox
  * @psalm-type TSerializedFeature = array{
  *   type: string,
  *   bbox?: TSerializedBoundingBox,
@@ -19,15 +19,10 @@ use Cowegis\GeoJson\Geometry\GeometryObject;
  */
 final class Feature extends BaseGeoJsonObject
 {
-    /**
-     * @var GeometryObject
-     */
-    private $geometry;
+    private GeometryObject $geometry;
 
-    /**
-     * @var array<string,mixed>
-     */
-    private $properties;
+    /** @var array<string,mixed> */
+    private array $properties;
 
     /** @param array<string,mixed> $properties */
     public function __construct(
@@ -59,7 +54,6 @@ final class Feature extends BaseGeoJsonObject
 
     /**
      * @return array<string,mixed>
-     *
      * @psalm-return TSerializedFeature
      */
     public function jsonSerialize(): array

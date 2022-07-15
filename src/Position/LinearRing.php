@@ -12,7 +12,7 @@ use function count;
 use function sprintf;
 
 /**
- * @psalm-import-type TSerializedCoordinates from \Cowegis\GeoJson\Position\Coordinates
+ * @psalm-import-type TSerializedCoordinates from Coordinates
  */
 final class LinearRing implements JsonSerializable
 {
@@ -20,7 +20,7 @@ final class LinearRing implements JsonSerializable
      * @var Coordinates[]
      * @psalm-var list<Coordinates>
      */
-    private $coordinates;
+    private array $coordinates;
 
     public function __construct(Coordinates ...$coordinates)
     {
@@ -38,7 +38,6 @@ final class LinearRing implements JsonSerializable
 
     /**
      * @return Coordinates[]
-     *
      * @psalm-return list<Coordinates>
      */
     public function coordinates(): array
@@ -48,7 +47,6 @@ final class LinearRing implements JsonSerializable
 
     /**
      * @return array<int, array<string,float>>
-     *
      * @psalm-return list<TSerializedCoordinates>
      */
     public function jsonSerialize(): array

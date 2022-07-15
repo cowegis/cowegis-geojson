@@ -10,8 +10,8 @@ use Cowegis\GeoJson\BoundingBox;
 use function array_map;
 
 /**
- * @psalm-import-type TSerializedBoundingBox from \Cowegis\GeoJson\BoundingBox
- * @psalm-import-type TSerializedFeature from \Cowegis\GeoJson\Feature\Feature
+ * @psalm-import-type TSerializedBoundingBox from BoundingBox
+ * @psalm-import-type TSerializedFeature from Feature
  * @psalm-type TSerializedFeatureCollection = array{
  *   type: 'FeatureCollection',
  *   features: list<TSerializedFeature>,
@@ -24,11 +24,10 @@ final class FeatureCollection extends BaseGeoJsonObject
      * @var Feature[]
      * @psalm-var list<Feature>
      */
-    private $features = [];
+    private array $features = [];
 
     /**
      * @param Feature[] $features
-     *
      * @psalm-param list<Feature> $features
      */
     public function __construct(
@@ -54,7 +53,6 @@ final class FeatureCollection extends BaseGeoJsonObject
 
     /**
      * @return Feature[]
-     *
      * @psalm-return list<Feature>
      */
     public function features(): array
@@ -64,7 +62,6 @@ final class FeatureCollection extends BaseGeoJsonObject
 
     /**
      * @return array<string,mixed>
-     *
      * @psalm-return TSerializedFeatureCollection
      */
     public function jsonSerialize(): array

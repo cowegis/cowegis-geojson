@@ -14,11 +14,9 @@ use PhpSpec\ObjectBehavior;
 
 final class FeatureCollectionSpec extends ObjectBehavior
 {
-    /** @var Feature */
-    private $feature1;
+    private Feature $feature1;
 
-    /** @var Feature */
-    private $feature2;
+    private Feature $feature2;
 
     public function let(GeometryObject $geometry1, GeometryObject $geometry2): void
     {

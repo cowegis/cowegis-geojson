@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Cowegis\GeoJson\Geometry;
 
 use Cowegis\GeoJson\BaseGeoJsonObject;
+use Cowegis\GeoJson\BoundingBox;
 use Cowegis\GeoJson\Exception\InvalidArgumentException;
 use JsonSerializable;
 
@@ -12,7 +13,7 @@ use function is_array;
 
 /**
  * @psalm-template TCoordinates
- * @psalm-import-type TSerializedBoundingBox from \Cowegis\GeoJson\BoundingBox
+ * @psalm-import-type TSerializedBoundingBox from BoundingBox
  * @psalm-type TSerializedGeometryWithCoordinates = array{
  *   type: string,
  *   coordinates: mixed,
@@ -23,14 +24,12 @@ abstract class GeometryWithCoordinates extends BaseGeoJsonObject implements Geom
 {
     /**
      * @return mixed
-     *
      * @psalm-return TCoordinates
      */
     abstract public function coordinates();
 
     /**
      * @return array<string, mixed>
-     *
      * @psalm-return TSerializedGeometryWithCoordinates
      */
     public function jsonSerialize(): array
@@ -43,10 +42,9 @@ abstract class GeometryWithCoordinates extends BaseGeoJsonObject implements Geom
 
     /**
      * @param array<int,mixed>|JsonSerializable $coordinates
+     * @psalm-param TCoordinates|JsonSerializable $coordinates
      *
      * @return array<mixed,mixed>
-     *
-     * @psalm-param TCoordinates|JsonSerializable $coordinates
      */
     private function serializeCoordinates($coordinates): array
     {

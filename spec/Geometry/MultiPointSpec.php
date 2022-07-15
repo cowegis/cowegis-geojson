@@ -8,13 +8,11 @@ use Cowegis\GeoJson\BoundingBox;
 use Cowegis\GeoJson\Geometry\MultiPoint;
 use Cowegis\GeoJson\Position\Coordinates;
 use Cowegis\GeoJson\Position\MultiCoordinates;
-use Cowegis\GeoJson\Position\MultiLineCoordinates;
 use PhpSpec\ObjectBehavior;
 
 final class MultiPointSpec extends ObjectBehavior
 {
-    /** @var MultiLineCoordinates */
-    private $coordinates;
+    private MultiCoordinates $coordinates;
 
     public function let(): void
     {

@@ -14,11 +14,10 @@ final class Polygon extends GeometryWithCoordinates
      * @var LinearRing[]
      * @psalm-var list<LinearRing>
      */
-    private $coordinates;
+    private array $coordinates;
 
     /**
      * @param LinearRing[] $coordinates
-     *
      * @psalm-param list<LinearRing> $coordinates
      */
     public function __construct(
@@ -37,7 +36,6 @@ final class Polygon extends GeometryWithCoordinates
 
     /**
      * @return LinearRing[]
-     *
      * @psalm-return list<LinearRing>
      */
     public function coordinates(): array

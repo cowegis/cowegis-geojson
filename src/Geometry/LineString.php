@@ -13,10 +13,7 @@ use function count;
 /** @extends GeometryWithCoordinates<MultiCoordinates> */
 final class LineString extends GeometryWithCoordinates
 {
-    /**
-     * @var MultiCoordinates
-     */
-    private $coordinates;
+    private MultiCoordinates $coordinates;
 
     public function __construct(
         MultiCoordinates $coordinates,

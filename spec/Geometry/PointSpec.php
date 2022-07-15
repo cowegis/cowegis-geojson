@@ -11,8 +11,7 @@ use PhpSpec\ObjectBehavior;
 
 final class PointSpec extends ObjectBehavior
 {
-    /** @var Coordinates */
-    private $coordinates;
+    private Coordinates $coordinates;
 
     public function let(): void
     {

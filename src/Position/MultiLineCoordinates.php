@@ -11,14 +11,14 @@ use JsonSerializable;
 use function array_map;
 use function count;
 
-/** @psalm-import-type TSerializedCoordinates from \Cowegis\GeoJson\Position\Coordinates */
+/** @psalm-import-type TSerializedCoordinates from Coordinates */
 final class MultiLineCoordinates implements JsonSerializable, Countable
 {
     /**
      * @var MultiCoordinates[]
      * @psalm-var list<MultiCoordinates>
      */
-    private $coordinates;
+    private array $coordinates;
 
     public function __construct(MultiCoordinates ...$coordinates)
     {
@@ -33,7 +33,6 @@ final class MultiLineCoordinates implements JsonSerializable, Countable
 
     /**
      * @return MultiCoordinates[]
-     *
      * @psalm-return list<MultiCoordinates>
      */
     public function coordinates(): array
@@ -48,7 +47,6 @@ final class MultiLineCoordinates implements JsonSerializable, Countable
 
     /**
      * @return float[][][]
-     *
      * @psalm-return list<list<TSerializedCoordinates>>
      */
     public function jsonSerialize(): array

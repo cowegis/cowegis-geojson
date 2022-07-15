@@ -10,10 +10,7 @@ use Cowegis\GeoJson\Position\MultiLineCoordinates;
 /** @extends GeometryWithCoordinates<MultiLineCoordinates> */
 final class MultiLineString extends GeometryWithCoordinates
 {
-    /**
-     * @var MultiLineCoordinates
-     */
-    private $coordinates;
+    private MultiLineCoordinates $coordinates;
 
     public function __construct(
         MultiLineCoordinates $coordinates,

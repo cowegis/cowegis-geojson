@@ -12,8 +12,7 @@ use PhpSpec\ObjectBehavior;
 
 final class PolygonSpec extends ObjectBehavior
 {
-    /** @var LinearRing */
-    private $coordinates;
+    private LinearRing $coordinates;
 
     public function let(): void
     {

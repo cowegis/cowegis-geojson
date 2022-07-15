@@ -1,13 +1,13 @@
 {
   "name": "cowegis/cowegis-geojson",
-  "type": "library",
   "description": "Cowegis GeoJSON - PHP GeoJSON specification (RFC 7946) implementation",
+  "license": "LGPL-3.0-or-later",
+  "type": "library",
   "keywords": [
     "geosjon",
     "gis",
     "webgis"
   ],
-  "license": "LGPL-3.0-or-later",
   "authors": [
     {
       "name": "David Molineus",
@@ -15,17 +15,13 @@
     }
   ],
   "require": {
-    "php": "^7.2",
+    "php": "^7.4 || ^8.0",
     "ext-json": "*"
   },
   "require-dev": {
-    "doctrine/coding-standard": "^8.0",
-    "phpspec/phpspec": "^6.1"
-  },
-  "extra": {
-    "branch-alias": {
-      "dev-master": "1.0.x-dev"
-    }
+    "doctrine/coding-standard": "^9.0",
+    "phpcq/runner-bootstrap": "^1.0@dev",
+    "phpspec/phpspec": "^6.1 || ^7.0"
   },
   "autoload": {
     "psr-4": {
@@ -35,6 +31,16 @@
   "autoload-dev": {
     "psr-4": {
       "spec\\Cowegis\\GeoJson\\": "spec/"
+    }
+  },
+  "config": {
+    "allow-plugins": {
+      "dealerdirect/phpcodesniffer-composer-installer": true
+    }
+  },
+  "extra": {
+    "branch-alias": {
+      "dev-master": "1.0.x-dev"
     }
   }
 }

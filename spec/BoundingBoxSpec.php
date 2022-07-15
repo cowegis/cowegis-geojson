@@ -11,11 +11,9 @@ use PhpSpec\ObjectBehavior;
 
 final class BoundingBoxSpec extends ObjectBehavior
 {
-    /** @var Coordinates */
-    private $southWest;
+    private Coordinates $southWest;
 
-    /** @var Coordinates */
-    private $northEast;
+    private Coordinates $northEast;
 
     public function let(): void
     {

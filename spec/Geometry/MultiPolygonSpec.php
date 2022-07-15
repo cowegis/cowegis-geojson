@@ -12,8 +12,8 @@ use PhpSpec\ObjectBehavior;
 
 final class MultiPolygonSpec extends ObjectBehavior
 {
-    /** @var LinearRing */
-    private $coordinates;
+    /** @var list<LinearRing> */
+    private array $coordinates;
 
     public function let(): void
     {

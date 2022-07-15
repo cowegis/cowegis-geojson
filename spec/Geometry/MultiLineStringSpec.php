@@ -13,8 +13,7 @@ use PhpSpec\ObjectBehavior;
 
 final class MultiLineStringSpec extends ObjectBehavior
 {
-    /** @var MultiLineCoordinates */
-    private $coordinates;
+    private MultiLineCoordinates $coordinates;
 
     public function let(): void
     {

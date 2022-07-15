@@ -17,11 +17,9 @@ use function sprintf;
  */
 final class BoundingBox implements JsonSerializable
 {
-    /** @var Coordinates */
-    private $southWest;
+    private Coordinates $southWest;
 
-    /** @var Coordinates */
-    private $northEast;
+    private Coordinates $northEast;
 
     public function __construct(Coordinates $southWest, Coordinates $northEast)
     {
@@ -69,7 +67,6 @@ final class BoundingBox implements JsonSerializable
 
     /**
      * @return float[]
-     *
      * @psalm-return TSerializedBoundingBox
      */
     public function jsonSerialize(): array

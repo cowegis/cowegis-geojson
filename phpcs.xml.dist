@@ -28,18 +28,6 @@
         </properties>
     </rule>
 
-    <rule ref="SlevomatCodingStandard.TypeHints.ParameterTypeHint">
-        <properties>
-            <property name="enableObjectTypeHint" value="false" />
-        </properties>
-    </rule>
-
-    <rule ref="SlevomatCodingStandard.TypeHints.PropertyTypeHint">
-        <properties>
-            <property name="enableNativeTypeHint" value="false" />
-        </properties>
-    </rule>
-
     <rule ref="PSR1.Methods.CamelCapsMethodName.NotCamelCaps">
         <exclude-pattern>spec/*</exclude-pattern>
     </rule>

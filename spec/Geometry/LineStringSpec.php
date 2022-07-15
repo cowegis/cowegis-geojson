@@ -9,13 +9,11 @@ use Cowegis\GeoJson\Exception\InvalidArgumentException;
 use Cowegis\GeoJson\Geometry\LineString;
 use Cowegis\GeoJson\Position\Coordinates;
 use Cowegis\GeoJson\Position\MultiCoordinates;
-use Cowegis\GeoJson\Position\MultiLineCoordinates;
 use PhpSpec\ObjectBehavior;
 
 final class LineStringSpec extends ObjectBehavior
 {
-    /** @var MultiLineCoordinates */
-    private $coordinates;
+    private MultiCoordinates $coordinates;
 
     public function let(): void
     {

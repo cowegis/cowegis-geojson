@@ -10,7 +10,7 @@ use Cowegis\GeoJson\BoundingBox;
 use function array_map;
 
 /**
- * @psalm-import-type TSerializedBoundingBox from \Cowegis\GeoJson\BoundingBox
+ * @psalm-import-type TSerializedBoundingBox from BoundingBox
  * @psalm-type TSerializedGeometryCollection = array{
  *   type: 'GeometryCollection',
  *   geometries: list<array<string,mixed>>,
@@ -23,11 +23,10 @@ final class GeometryCollection extends BaseGeoJsonObject implements GeometryObje
      * @var GeometryObject[]
      * @psalm-var list<GeometryObject>
      */
-    private $geometries = [];
+    private array $geometries = [];
 
     /**
      * @param GeometryObject[] $geometries
-     *
      * @psalm-param list<GeometryObject> $geometries
      */
     public function __construct(
@@ -53,7 +52,6 @@ final class GeometryCollection extends BaseGeoJsonObject implements GeometryObje
 
     /**
      * @return GeometryObject[]
-     *
      * @psalm-return list<GeometryObject>
      */
     public function geometries(): array
@@ -63,7 +61,6 @@ final class GeometryCollection extends BaseGeoJsonObject implements GeometryObje
 
     /**
      * @return array<string,mixed>
-     *
      * @psalm-return TSerializedGeometryCollection
      */
     public function jsonSerialize(): array
