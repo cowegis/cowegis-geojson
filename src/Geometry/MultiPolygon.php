@@ -5,9 +5,19 @@ declare(strict_types=1);
 namespace Cowegis\GeoJson\Geometry;
 
 use Cowegis\GeoJson\BoundingBox;
+use Cowegis\GeoJson\Position\Coordinates;
 use Cowegis\GeoJson\Position\LinearRing;
 
-/** @extends GeometryWithCoordinates<list<list<LinearRing>>> */
+/**
+ * @psalm-import-type TSerializedBoundingBox from BoundingBox
+ * @psalm-import-type TSerializedCoordinates from Coordinates
+ * @psalm-type TSerializedMultiPolygon = array{
+ *   type: string,
+ *   coordinates: list<list<list<TSerializedCoordinates>>>,
+ *   bbox?: TSerializedBoundingBox
+ * }
+ * @extends GeometryWithCoordinates<list<list<LinearRing>>, TSerializedMultiPolygon>
+ */
 final class MultiPolygon extends GeometryWithCoordinates
 {
     /**

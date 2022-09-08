@@ -8,6 +8,7 @@ use Countable;
 use JsonSerializable;
 
 use function array_map;
+use function array_values;
 use function count;
 
 /**
@@ -23,7 +24,7 @@ final class MultiCoordinates implements JsonSerializable, Countable
 
     public function __construct(Coordinates ...$positions)
     {
-        $this->positions = $positions;
+        $this->positions = array_values($positions);
     }
 
     public function count(): int

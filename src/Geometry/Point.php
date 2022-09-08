@@ -7,7 +7,16 @@ namespace Cowegis\GeoJson\Geometry;
 use Cowegis\GeoJson\BoundingBox;
 use Cowegis\GeoJson\Position\Coordinates;
 
-/** @extends GeometryWithCoordinates<Coordinates> */
+/**
+ * @psalm-import-type TSerializedBoundingBox from BoundingBox
+ * @psalm-import-type TSerializedCoordinates from Coordinates
+ * @psalm-type TSerializedPoint = array{
+ *   type: string,
+ *   coordinates: TSerializedCoordinates,
+ *   bbox?: TSerializedBoundingBox
+ * }
+ * @extends GeometryWithCoordinates<Coordinates, TSerializedPoint>
+ */
 final class Point extends GeometryWithCoordinates
 {
     private Coordinates $coordinates;

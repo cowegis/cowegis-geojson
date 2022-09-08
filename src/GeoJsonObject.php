@@ -8,6 +8,8 @@ use JsonSerializable;
 
 /**
  * Interface GeoJsonObject is a marker for objects which a full geo json object representations.
+ *
+ * @template TSerialized
  */
 interface GeoJsonObject extends JsonSerializable
 {
@@ -19,6 +21,6 @@ interface GeoJsonObject extends JsonSerializable
 
     public function boundingBox(): ?BoundingBox;
 
-    /** @return array<string,mixed> */
+    /** @return TSerialized */
     public function jsonSerialize(): array;
 }

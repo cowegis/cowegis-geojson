@@ -11,11 +11,21 @@ use function array_map;
 
 /**
  * @psalm-import-type TSerializedBoundingBox from BoundingBox
+ * @psalm-import-type TSerializedLineString from LineString
+ * @psalm-import-type TSerializedMultiLineString from MultiLineString
+ * @psalm-import-type TSerializedMultiPoint from MultiPoint
+ * @psalm-import-type TSerializedMultiPolygon from MultiPolygon
+ * @psalm-import-type TSerializedPoint from Point
+ * @psalm-import-type TSerializedPolygon from Polygon
+ * @psalm-import-type TSerializedMultiGeometry from GeometryObject
+ * @psalm-import-type TSerializedSingleGeometry from GeometryObject
+ * @psalm-import-type TSerializedGeometry from GeometryObject
  * @psalm-type TSerializedGeometryCollection = array{
- *   type: 'GeometryCollection',
- *   geometries: list<array<string,mixed>>,
+ *   type: string,
+ *   geometries: list<TSerializedMultiGeometry|TSerializedSingleGeometry>,
  *   bbox?: TSerializedBoundingBox
  * }
+ * @extends BaseGeoJsonObject<TSerializedGeometryCollection>
  */
 final class GeometryCollection extends BaseGeoJsonObject implements GeometryObject
 {
@@ -59,10 +69,7 @@ final class GeometryCollection extends BaseGeoJsonObject implements GeometryObje
         return $this->geometries;
     }
 
-    /**
-     * @return array<string,mixed>
-     * @psalm-return TSerializedGeometryCollection
-     */
+    /** {@inheritDoc} */
     public function jsonSerialize(): array
     {
         $data               = parent::jsonSerialize();

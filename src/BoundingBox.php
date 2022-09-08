@@ -44,11 +44,11 @@ final class BoundingBox implements JsonSerializable
         }
 
         if ($southWest->altitude() === null && $northEast->altitude() !== null) {
-            throw new InvalidArgumentException('North east coordinates contains altitude but south west doesn\t.');
+            throw new InvalidArgumentException('North east coordinates contains altitude but south west doesn\'t.');
         }
 
         if ($northEast->altitude() === null && $southWest->altitude() !== null) {
-            throw new InvalidArgumentException('South west coordinates contains altitude but north east doesn\t.');
+            throw new InvalidArgumentException('South west coordinates contains altitude but north east doesn\'t.');
         }
 
         $this->southWest = $southWest;

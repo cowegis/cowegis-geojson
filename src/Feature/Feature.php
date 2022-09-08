@@ -10,12 +10,14 @@ use Cowegis\GeoJson\Geometry\GeometryObject;
 
 /**
  * @psalm-import-type TSerializedBoundingBox from BoundingBox
+ * @psalm-import-type TSerializedGeometry from GeometryObject
  * @psalm-type TSerializedFeature = array{
  *   type: string,
  *   bbox?: TSerializedBoundingBox,
- *   geometry: array<string,mixed>,
+ *   geometry: TSerializedGeometry,
  *   properties: array<string,mixed>
  * }
+ * @extends BaseGeoJsonObject<TSerializedFeature>
  */
 final class Feature extends BaseGeoJsonObject
 {
@@ -52,10 +54,7 @@ final class Feature extends BaseGeoJsonObject
         return $this->properties;
     }
 
-    /**
-     * @return array<string,mixed>
-     * @psalm-return TSerializedFeature
-     */
+    /** {@inheritDoc} */
     public function jsonSerialize(): array
     {
         $data               = parent::jsonSerialize();

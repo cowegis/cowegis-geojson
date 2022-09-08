@@ -5,11 +5,13 @@ declare(strict_types=1);
 namespace Cowegis\GeoJson;
 
 /**
+ * @template TSerialized
  * @psalm-import-type TSerializedBoundingBox from BoundingBox
  * @psalm-type TSerializedBaseGeoJsonObject = array{
  *   type: string,
  *   bbox?: TSerializedBoundingBox
  * }
+ * @implements GeoJsonObject<TSerialized>
  */
 abstract class BaseGeoJsonObject implements GeoJsonObject
 {
@@ -26,8 +28,7 @@ abstract class BaseGeoJsonObject implements GeoJsonObject
     }
 
     /**
-     * @return array<string,mixed>
-     * @psalm-return TSerializedBaseGeoJsonObject
+     * {@inheritDoc}
      */
     public function jsonSerialize(): array
     {

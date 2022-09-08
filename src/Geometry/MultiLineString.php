@@ -5,9 +5,19 @@ declare(strict_types=1);
 namespace Cowegis\GeoJson\Geometry;
 
 use Cowegis\GeoJson\BoundingBox;
+use Cowegis\GeoJson\Position\Coordinates;
 use Cowegis\GeoJson\Position\MultiLineCoordinates;
 
-/** @extends GeometryWithCoordinates<MultiLineCoordinates> */
+/**
+ * @psalm-import-type TSerializedBoundingBox from BoundingBox
+ * @psalm-import-type TSerializedCoordinates from Coordinates
+ * @psalm-type TSerializedMultiLineString = array{
+ *   type: string,
+ *   coordinates: list<list<TSerializedCoordinates>>,
+ *   bbox?: TSerializedBoundingBox
+ * }
+ * @extends GeometryWithCoordinates<MultiLineCoordinates, TSerializedMultiLineString>
+ */
 final class MultiLineString extends GeometryWithCoordinates
 {
     private MultiLineCoordinates $coordinates;

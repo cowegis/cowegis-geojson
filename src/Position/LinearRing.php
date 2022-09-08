@@ -8,6 +8,7 @@ use Cowegis\GeoJson\Exception\InvalidArgumentException;
 use JsonSerializable;
 
 use function array_map;
+use function array_values;
 use function count;
 use function sprintf;
 
@@ -24,7 +25,9 @@ final class LinearRing implements JsonSerializable
 
     public function __construct(Coordinates ...$coordinates)
     {
-        $count = count($coordinates);
+        $count       = count($coordinates);
+        $coordinates = array_values($coordinates);
+
         if ($count < 4) {
             throw new InvalidArgumentException(sprintf('At least 4 coordinates required. %s given', $count));
         }

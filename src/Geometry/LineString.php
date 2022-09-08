@@ -6,11 +6,21 @@ namespace Cowegis\GeoJson\Geometry;
 
 use Cowegis\GeoJson\BoundingBox;
 use Cowegis\GeoJson\Exception\InvalidArgumentException;
+use Cowegis\GeoJson\Position\Coordinates;
 use Cowegis\GeoJson\Position\MultiCoordinates;
 
 use function count;
 
-/** @extends GeometryWithCoordinates<MultiCoordinates> */
+/**
+ * @psalm-import-type TSerializedBoundingBox from BoundingBox
+ * @psalm-import-type TSerializedCoordinates from Coordinates
+ * @psalm-type TSerializedLineString = array{
+ *   type: string,
+ *   coordinates: list<TSerializedCoordinates>,
+ *   bbox?: TSerializedBoundingBox
+ * }
+ * @extends GeometryWithCoordinates<MultiCoordinates, TSerializedLineString>
+ */
 final class LineString extends GeometryWithCoordinates
 {
     private MultiCoordinates $coordinates;

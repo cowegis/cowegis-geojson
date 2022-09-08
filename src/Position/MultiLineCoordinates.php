@@ -9,6 +9,7 @@ use InvalidArgumentException;
 use JsonSerializable;
 
 use function array_map;
+use function array_values;
 use function count;
 
 /** @psalm-import-type TSerializedCoordinates from Coordinates */
@@ -28,7 +29,7 @@ final class MultiLineCoordinates implements JsonSerializable, Countable
             }
         }
 
-        $this->coordinates = $coordinates;
+        $this->coordinates = array_values($coordinates);
     }
 
     /**

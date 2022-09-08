@@ -12,13 +12,10 @@ use JsonSerializable;
 use function is_array;
 
 /**
- * @psalm-template TCoordinates
+ * @template TCoordinates
+ * @template TSerialized
  * @psalm-import-type TSerializedBoundingBox from BoundingBox
- * @psalm-type TSerializedGeometryWithCoordinates = array{
- *   type: string,
- *   coordinates: mixed,
- *   bbox?: TSerializedBoundingBox
- * }
+ * @extends BaseGeoJsonObject<TSerialized>
  */
 abstract class GeometryWithCoordinates extends BaseGeoJsonObject implements GeometryObject
 {
@@ -28,10 +25,7 @@ abstract class GeometryWithCoordinates extends BaseGeoJsonObject implements Geom
      */
     abstract public function coordinates();
 
-    /**
-     * @return array<string, mixed>
-     * @psalm-return TSerializedGeometryWithCoordinates
-     */
+    /** {@inheritDoc} */
     public function jsonSerialize(): array
     {
         $data                = parent::jsonSerialize();
@@ -42,7 +36,7 @@ abstract class GeometryWithCoordinates extends BaseGeoJsonObject implements Geom
 
     /**
      * @param array<int,mixed>|JsonSerializable $coordinates
-     * @psalm-param TCoordinates|JsonSerializable $coordinates
+     * @psalm-param array|TCoordinates|JsonSerializable $coordinates
      *
      * @return array<mixed,mixed>
      */

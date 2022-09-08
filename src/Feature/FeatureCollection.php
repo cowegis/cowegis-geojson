@@ -13,10 +13,11 @@ use function array_map;
  * @psalm-import-type TSerializedBoundingBox from BoundingBox
  * @psalm-import-type TSerializedFeature from Feature
  * @psalm-type TSerializedFeatureCollection = array{
- *   type: 'FeatureCollection',
+ *   type: string,
  *   features: list<TSerializedFeature>,
  *   bbox?: TSerializedBoundingBox
  * }
+ * @extends BaseGeoJsonObject<TSerializedFeatureCollection>
  */
 final class FeatureCollection extends BaseGeoJsonObject
 {
@@ -60,10 +61,7 @@ final class FeatureCollection extends BaseGeoJsonObject
         return $this->features;
     }
 
-    /**
-     * @return array<string,mixed>
-     * @psalm-return TSerializedFeatureCollection
-     */
+    /** {@inheritDoc} */
     public function jsonSerialize(): array
     {
         $data             = parent::jsonSerialize();
