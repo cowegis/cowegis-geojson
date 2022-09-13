@@ -65,6 +65,24 @@ final class FeatureSpec extends ObjectBehavior
 
     public function it_is_json_serializable(GeometryObject $geometry): void
     {
+        $this->shouldImplement(JsonSerializable::class);
+
+        $geometry->jsonSerialize()->shouldBeCalled()->willReturn(['type' => 'Point', 'coordinates' => [1.0, 1.0]]);
+
+        $this->jsonSerialize()->shouldBe(
+            [
+                'type'       => 'Feature',
+                'geometry'   => [
+                    'type'        => 'Point',
+                    'coordinates' => [1.0, 1.0],
+                ],
+                'properties' => self::PROPERTIES,
+            ]
+        );
+    }
+
+    public function it_is_json_serializable_containing_optional_values(GeometryObject $geometry): void
+    {
         $bbox = new BoundingBox(new Coordinates(1.0, 0.0), new Coordinates(2.0, 0.0));
         $this->beConstructedWith($geometry, self::PROPERTIES, $bbox, 2);
 
