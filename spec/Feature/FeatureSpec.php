@@ -33,6 +33,13 @@ final class FeatureSpec extends ObjectBehavior
         $this->type()->shouldReturn(Feature::FEATURE);
     }
 
+    public function it_may_have_an_id(GeometryObject $geometry): void
+    {
+        $this->beConstructedWith($geometry, self::PROPERTIES, null, 2);
+
+        $this->id()->shouldBe(2);
+    }
+
     public function it_belongs_to_a_geometry(GeometryObject $geometry): void
     {
         $this->geometry()->shouldReturn($geometry);
@@ -58,18 +65,28 @@ final class FeatureSpec extends ObjectBehavior
 
     public function it_is_json_serializable(GeometryObject $geometry): void
     {
+        $bbox = new BoundingBox(new Coordinates(1.0, 0.0), new Coordinates(2.0, 0.0));
+        $this->beConstructedWith($geometry, self::PROPERTIES, $bbox, 2);
+
         $this->shouldImplement(JsonSerializable::class);
 
         $geometry->jsonSerialize()->shouldBeCalled()->willReturn(['type' => 'Point', 'coordinates' => [1.0, 1.0]]);
 
-        $this->jsonSerialize()->shouldReturn(
+        $this->jsonSerialize()->shouldBe(
             [
                 'type'       => 'Feature',
+                'bbox'       => [
+                    1.0,
+                    0.0,
+                    2.0,
+                    0.0,
+                ],
                 'geometry'   => [
                     'type'        => 'Point',
                     'coordinates' => [1.0, 1.0],
                 ],
                 'properties' => self::PROPERTIES,
+                'id'         => 2,
             ]
         );
     }

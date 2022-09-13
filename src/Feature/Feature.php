@@ -13,11 +13,14 @@ use Cowegis\GeoJson\Geometry\GeometryObject;
  * @psalm-import-type TSerializedGeometry from GeometryObject
  * @psalm-type TSerializedFeature = array{
  *   type: string,
+ *   id?: string|int,
  *   bbox?: TSerializedBoundingBox,
  *   geometry: TSerializedGeometry,
  *   properties: array<string,mixed>
  * }
  * @extends BaseGeoJsonObject<TSerializedFeature>
+ * @SuppressWarnings(PHPMD.ShortVariable)
+ * @SuppressWarnings(PHPMD.ShortMethodName)
  */
 final class Feature extends BaseGeoJsonObject
 {
@@ -26,16 +29,24 @@ final class Feature extends BaseGeoJsonObject
     /** @var array<string,mixed> */
     private array $properties;
 
-    /** @param array<string,mixed> $properties */
+    /** @var string|int|null */
+    private $id;
+
+    /**
+     * @param array<string,mixed> $properties
+     * @param string|int|null     $id
+     */
     public function __construct(
         GeometryObject $geometry,
         array $properties,
-        ?BoundingBox $bbox = null
+        ?BoundingBox $bbox = null,
+        $id = null
     ) {
         parent::__construct($bbox);
 
         $this->geometry   = $geometry;
         $this->properties = $properties;
+        $this->id         = $id;
     }
 
     public function type(): string
@@ -54,12 +65,22 @@ final class Feature extends BaseGeoJsonObject
         return $this->properties;
     }
 
+    /** @return string|int|null */
+    public function id()
+    {
+        return $this->id;
+    }
+
     /** {@inheritDoc} */
     public function jsonSerialize(): array
     {
         $data               = parent::jsonSerialize();
         $data['geometry']   = $this->geometry()->jsonSerialize();
         $data['properties'] = $this->properties();
+
+        if ($this->id !== null) {
+            $data['id'] = $this->id;
+        }
 
         return $data;
     }
