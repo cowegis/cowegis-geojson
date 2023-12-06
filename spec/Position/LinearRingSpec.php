@@ -18,7 +18,7 @@ final class LinearRingSpec extends ObjectBehavior
             new Coordinates(0, 0),
             new Coordinates(1, 0),
             new Coordinates(2, 0),
-            new Coordinates(0, 0)
+            new Coordinates(0, 0),
         );
     }
 
@@ -32,7 +32,7 @@ final class LinearRingSpec extends ObjectBehavior
         $this->beConstructedWith(
             new Coordinates(0, 0),
             new Coordinates(1, 0),
-            new Coordinates(2, 0)
+            new Coordinates(2, 0),
         );
         $this->shouldThrow(InvalidArgumentException::class)->duringInstantiation();
     }
@@ -43,7 +43,7 @@ final class LinearRingSpec extends ObjectBehavior
             new Coordinates(0, 0),
             new Coordinates(1, 0),
             new Coordinates(2, 0),
-            new Coordinates(3, 0)
+            new Coordinates(3, 0),
         );
         $this->shouldThrow(InvalidArgumentException::class)->duringInstantiation();
     }

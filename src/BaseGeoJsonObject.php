@@ -15,21 +15,16 @@ namespace Cowegis\GeoJson;
  */
 abstract class BaseGeoJsonObject implements GeoJsonObject
 {
-    private ?BoundingBox $boundingBox;
-
-    public function __construct(?BoundingBox $boundingBox = null)
+    public function __construct(private readonly BoundingBox|null $boundingBox = null)
     {
-        $this->boundingBox = $boundingBox;
     }
 
-    public function boundingBox(): ?BoundingBox
+    public function boundingBox(): BoundingBox|null
     {
         return $this->boundingBox;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     public function jsonSerialize(): array
     {
         $data = ['type' => $this->type()];

@@ -12,20 +12,24 @@ use JsonSerializable;
 use function is_array;
 
 /**
- * @template TCoordinates
- * @template TSerialized
+ * @psalm-import-type TSerializedGeometry from GeometryObject
  * @psalm-import-type TSerializedBoundingBox from BoundingBox
+ * @template TCoordinates
+ * @template TSerialized of TSerializedGeometry
  * @extends BaseGeoJsonObject<TSerialized>
  */
 abstract class GeometryWithCoordinates extends BaseGeoJsonObject implements GeometryObject
 {
-    /**
-     * @return mixed
-     * @psalm-return TCoordinates
-     */
-    abstract public function coordinates();
+    /** @psalm-return TCoordinates */
+    abstract public function coordinates(): object|array;
 
-    /** {@inheritDoc} */
+    /**
+     * @return TSerialized
+     *
+     * @psalm-suppress ImplementedReturnTypeMismatch
+     * @psalm-suppress InvalidReturnType
+     * @psalm-suppress InvalidReturnStatement
+     */
     public function jsonSerialize(): array
     {
         $data                = parent::jsonSerialize();
@@ -35,12 +39,11 @@ abstract class GeometryWithCoordinates extends BaseGeoJsonObject implements Geom
     }
 
     /**
-     * @param array<int,mixed>|JsonSerializable $coordinates
-     * @psalm-param array|TCoordinates|JsonSerializable $coordinates
+     * @param TCoordinates $coordinates
      *
      * @return array<mixed,mixed>
      */
-    private function serializeCoordinates($coordinates): array
+    private function serializeCoordinates(object|array $coordinates): array
     {
         if ($coordinates instanceof JsonSerializable) {
             /** @psalm-suppress MixedMethodCall */
@@ -56,7 +59,7 @@ abstract class GeometryWithCoordinates extends BaseGeoJsonObject implements Geom
             throw new InvalidArgumentException('Coordinates have to be an instanceof \JsonSerializable or an array');
         }
 
-        /** @psalm-var array<int,mixed>|JsonSerializable $value */
+        /** @psalm-var TCoordinates $value */
         foreach ($coordinates as $key => $value) {
             $coordinates[$key] = $this->serializeCoordinates($value);
         }

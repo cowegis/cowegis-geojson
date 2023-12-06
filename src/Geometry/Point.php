@@ -15,19 +15,13 @@ use Cowegis\GeoJson\Position\Coordinates;
  *   coordinates: TSerializedCoordinates,
  *   bbox?: TSerializedBoundingBox
  * }
- * @extends GeometryWithCoordinates<Coordinates, TSerializedPoint>
+ * @extends GeometryWithCoordinates<TSerializedCoordinates, TSerializedPoint>
  */
 final class Point extends GeometryWithCoordinates
 {
-    private Coordinates $coordinates;
-
-    public function __construct(
-        Coordinates $coordinates,
-        ?BoundingBox $bbox = null
-    ) {
+    public function __construct(private readonly Coordinates $coordinates, BoundingBox|null $bbox = null)
+    {
         parent::__construct($bbox);
-
-        $this->coordinates = $coordinates;
     }
 
     public function type(): string

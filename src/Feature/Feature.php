@@ -24,29 +24,14 @@ use Cowegis\GeoJson\Geometry\GeometryObject;
  */
 final class Feature extends BaseGeoJsonObject
 {
-    private GeometryObject $geometry;
-
-    /** @var array<string,mixed> */
-    private array $properties;
-
-    /** @var string|int|null */
-    private $id;
-
-    /**
-     * @param array<string,mixed> $properties
-     * @param string|int|null     $id
-     */
+    /** @param array<string,mixed> $properties */
     public function __construct(
-        GeometryObject $geometry,
-        array $properties,
-        ?BoundingBox $bbox = null,
-        $id = null
+        private readonly GeometryObject $geometry,
+        private readonly array $properties,
+        BoundingBox|null $bbox = null,
+        private readonly int|string|null $id = null,
     ) {
         parent::__construct($bbox);
-
-        $this->geometry   = $geometry;
-        $this->properties = $properties;
-        $this->id         = $id;
     }
 
     public function type(): string
@@ -65,13 +50,18 @@ final class Feature extends BaseGeoJsonObject
         return $this->properties;
     }
 
-    /** @return string|int|null */
-    public function id()
+    public function id(): string|int|null
     {
         return $this->id;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * @return TSerializedFeature
+     *
+     * @psalm-suppress InvalidReturnStatement
+     * @psalm-suppress InvalidReturnType
+     * @psalm-suppress LessSpecificImplementedReturnType
+     */
     public function jsonSerialize(): array
     {
         $data               = parent::jsonSerialize();

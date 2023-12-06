@@ -19,7 +19,7 @@ final class MultiLineStringSpec extends ObjectBehavior
     {
         $this->coordinates = new MultiLineCoordinates(
             new MultiCoordinates(new Coordinates(0.0, 0.0), new Coordinates(1.0, 0.0)),
-            new MultiCoordinates(new Coordinates(2.0, 0.0), new Coordinates(3.0, 0.0))
+            new MultiCoordinates(new Coordinates(2.0, 0.0), new Coordinates(3.0, 0.0)),
         );
         $this->beConstructedWith($this->coordinates);
     }
@@ -59,7 +59,7 @@ final class MultiLineStringSpec extends ObjectBehavior
                     [[0.0, 0.0], [1.0, 0.0]],
                     [[2.0, 0.0], [3.0, 0.0]],
                 ],
-            ]
+            ],
         );
     }
 }

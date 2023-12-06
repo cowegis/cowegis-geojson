@@ -67,7 +67,7 @@ final class Parser
                 /** @psalm-var TSerializedFeatureCollection $geoJson */
                 return new FeatureCollection(
                     array_map([$this, 'parseFeature'], $geoJson['features']),
-                    $this->parseBoundingBox($geoJson['bbox'] ?? null)
+                    $this->parseBoundingBox($geoJson['bbox'] ?? null),
                 );
 
             case 'Feature':
@@ -85,7 +85,7 @@ final class Parser
         return new Feature(
             $this->parseGeometry($geoJson['geometry']),
             $geoJson['properties'] ?? [],
-            $this->parseBoundingBox($geoJson['bbox'] ?? null)
+            $this->parseBoundingBox($geoJson['bbox'] ?? null),
         );
     }
 
@@ -97,21 +97,21 @@ final class Parser
                 /** @psalm-var TSerializedPoint $geoJson */
                 return new Point(
                     $this->parseCoordinates($geoJson['coordinates']),
-                    $this->parseBoundingBox($geoJson['bbox'] ?? null)
+                    $this->parseBoundingBox($geoJson['bbox'] ?? null),
                 );
 
             case GeometryObject::MULTI_POINT:
                 /** @psalm-var TSerializedMultiPoint $geoJson */
                 return new MultiPoint(
                     new MultiCoordinates(...array_map([$this, 'parseCoordinates'], $geoJson['coordinates'])),
-                    $this->parseBoundingBox($geoJson['bbox'] ?? null)
+                    $this->parseBoundingBox($geoJson['bbox'] ?? null),
                 );
 
             case GeometryObject::LINE_STRING:
                 /** @psalm-var TSerializedLineString $geoJson */
                 return new LineString(
                     new MultiCoordinates(...array_map([$this, 'parseCoordinates'], $geoJson['coordinates'])),
-                    $this->parseBoundingBox($geoJson['bbox'] ?? null)
+                    $this->parseBoundingBox($geoJson['bbox'] ?? null),
                 );
 
             case GeometryObject::MULTI_LINE_STRING:
@@ -127,10 +127,15 @@ final class Parser
                 return $this->parseMultiPolygon($geoJson);
 
             case GeometryObject::GEOMETRY_COLLECTION:
-                /** @psalm-var TSerializedGeometryCollection $geoJson */
+                /**
+                 * @psalm-var TSerializedGeometryCollection $geoJson
+                 * @psalm-var list<TSerializedGeometry> $geometries
+                 */
+                $geometries = $geoJson['geometries'];
+
                 return new GeometryCollection(
-                    array_map([$this, 'parseGeometry'], $geoJson['geometries']),
-                    $this->parseBoundingBox($geoJson['bbox'] ?? null)
+                    array_map([$this, 'parseGeometry'], $geometries),
+                    $this->parseBoundingBox($geoJson['bbox'] ?? null),
                 );
 
             default:
@@ -139,14 +144,13 @@ final class Parser
     }
 
     /** @param TSerializedBoundingBox $boundingBox */
-    private function parseBoundingBox(?array $boundingBox): ?BoundingBox
+    private function parseBoundingBox(array|null $boundingBox): BoundingBox|null
     {
         if ($boundingBox === null) {
             return null;
         }
 
         if (count($boundingBox) === 6) {
-            /** @psalm-var TSerialized3DBoundingBox $boundingBox */
             $southWest = [$boundingBox[0], $boundingBox[1], $boundingBox[2]];
             $northEast = [$boundingBox[3], $boundingBox[4], $boundingBox[5]];
         } else {
@@ -191,7 +195,7 @@ final class Parser
 
         return new MultiLineString(
             new MultiLineCoordinates(...$coordinates),
-            $this->parseBoundingBox($geoJson['bbox'] ?? null)
+            $this->parseBoundingBox($geoJson['bbox'] ?? null),
         );
     }
 

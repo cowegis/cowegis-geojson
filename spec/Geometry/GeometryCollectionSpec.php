@@ -55,7 +55,7 @@ final class GeometryCollectionSpec extends ObjectBehavior
                     ['type' => 'Point', 'coordinates' => [0.0, 1.0]],
                     ['type' => 'Point', 'coordinates' => [1.0, 1.0]],
                 ],
-            ]
+            ],
         );
     }
 }

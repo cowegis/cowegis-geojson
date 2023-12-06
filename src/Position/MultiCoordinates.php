@@ -11,9 +11,7 @@ use function array_map;
 use function array_values;
 use function count;
 
-/**
- * @psalm-import-type TSerializedCoordinates from Coordinates
- */
+/** @psalm-import-type TSerializedCoordinates from Coordinates */
 final class MultiCoordinates implements JsonSerializable, Countable
 {
     /**
@@ -51,7 +49,7 @@ final class MultiCoordinates implements JsonSerializable, Countable
             static function (Coordinates $coordinates) {
                 return $coordinates->jsonSerialize();
             },
-            $this->coordinates()
+            $this->coordinates(),
         );
     }
 }

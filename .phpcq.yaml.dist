@@ -48,6 +48,8 @@ phpcq:
     - C00543248C87FB13
     # Composer require checker
     - 033E5F8D801A2F8D
+    # PHPMD
+    - 9093F8B32E4815AA
 
 tasks:
   fix:

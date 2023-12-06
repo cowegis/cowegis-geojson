@@ -76,7 +76,7 @@ final class FeatureCollectionSpec extends ObjectBehavior
                         'properties' => [],
                     ],
                 ],
-            ]
+            ],
         );
     }
 }

@@ -19,7 +19,7 @@ interface GeoJsonObject extends JsonSerializable
 
     public function type(): string;
 
-    public function boundingBox(): ?BoundingBox;
+    public function boundingBox(): BoundingBox|null;
 
     /** @return TSerialized */
     public function jsonSerialize(): array;

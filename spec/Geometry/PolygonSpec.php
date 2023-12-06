@@ -20,7 +20,7 @@ final class PolygonSpec extends ObjectBehavior
             new Coordinates(0.0, 0.0),
             new Coordinates(1.0, 0.0),
             new Coordinates(2.0, 0.0),
-            new Coordinates(0.0, 0.0)
+            new Coordinates(0.0, 0.0),
         );
         $this->beConstructedWith([$this->coordinates]);
     }
@@ -57,7 +57,7 @@ final class PolygonSpec extends ObjectBehavior
                 'type'        => 'Polygon',
                 'bbox'        => [1.0, 0.0, 2.0, 0.0],
                 'coordinates' => [[[0.0, 0.0], [1.0, 0.0], [2.0, 0.0], [0.0, 0.0]]],
-            ]
+            ],
         );
     }
 }

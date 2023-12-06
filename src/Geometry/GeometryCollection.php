@@ -11,18 +11,12 @@ use function array_map;
 
 /**
  * @psalm-import-type TSerializedBoundingBox from BoundingBox
- * @psalm-import-type TSerializedLineString from LineString
- * @psalm-import-type TSerializedMultiLineString from MultiLineString
- * @psalm-import-type TSerializedMultiPoint from MultiPoint
- * @psalm-import-type TSerializedMultiPolygon from MultiPolygon
- * @psalm-import-type TSerializedPoint from Point
- * @psalm-import-type TSerializedPolygon from Polygon
  * @psalm-import-type TSerializedMultiGeometry from GeometryObject
  * @psalm-import-type TSerializedSingleGeometry from GeometryObject
  * @psalm-import-type TSerializedGeometry from GeometryObject
  * @psalm-type TSerializedGeometryCollection = array{
  *   type: string,
- *   geometries: list<TSerializedMultiGeometry|TSerializedSingleGeometry>,
+ *   geometries: list<mixed>,
  *   bbox?: TSerializedBoundingBox
  * }
  * @extends BaseGeoJsonObject<TSerializedGeometryCollection>
@@ -39,10 +33,8 @@ final class GeometryCollection extends BaseGeoJsonObject implements GeometryObje
      * @param GeometryObject[] $geometries
      * @psalm-param list<GeometryObject> $geometries
      */
-    public function __construct(
-        array $geometries,
-        ?BoundingBox $boundingBox = null
-    ) {
+    public function __construct(array $geometries, BoundingBox|null $boundingBox = null)
+    {
         parent::__construct($boundingBox);
 
         foreach ($geometries as $geometry) {
@@ -69,15 +61,21 @@ final class GeometryCollection extends BaseGeoJsonObject implements GeometryObje
         return $this->geometries;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * @return TSerializedGeometryCollection
+     *
+     * @psalm-suppress InvalidReturnStatement
+     * @psalm-suppress InvalidReturnType
+     */
     public function jsonSerialize(): array
     {
         $data               = parent::jsonSerialize();
         $data['geometries'] = array_map(
+            /** @return TSerializedGeometry */
             static function (GeometryObject $geometryObject): array {
                 return $geometryObject->jsonSerialize();
             },
-            $this->geometries()
+            $this->geometries(),
         );
 
         return $data;

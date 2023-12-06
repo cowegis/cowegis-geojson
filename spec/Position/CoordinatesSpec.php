@@ -40,7 +40,7 @@ final class CoordinatesSpec extends ObjectBehavior
                 self::LONGITUDE,
                 self::LATITUDE,
                 self::ALTITUDE,
-            ]
+            ],
         );
     }
 
@@ -56,7 +56,7 @@ final class CoordinatesSpec extends ObjectBehavior
             [
                 self::LONGITUDE,
                 self::LATITUDE,
-            ]
+            ],
         );
     }
 

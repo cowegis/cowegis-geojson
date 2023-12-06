@@ -21,22 +21,12 @@ use Cowegis\GeoJson\Position\LinearRing;
 final class Polygon extends GeometryWithCoordinates
 {
     /**
-     * @var LinearRing[]
-     * @psalm-var list<LinearRing>
-     */
-    private array $coordinates;
-
-    /**
      * @param LinearRing[] $coordinates
      * @psalm-param list<LinearRing> $coordinates
      */
-    public function __construct(
-        array $coordinates,
-        ?BoundingBox $bbox = null
-    ) {
+    public function __construct(private readonly array $coordinates, BoundingBox|null $bbox = null)
+    {
         parent::__construct($bbox);
-
-        $this->coordinates = $coordinates;
     }
 
     public function type(): string

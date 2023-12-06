@@ -52,7 +52,7 @@ final class MultiPointSpec extends ObjectBehavior
                 'type'        => 'MultiPoint',
                 'bbox'        => [1.0, 0.0, 2.0, 0.0],
                 'coordinates' => [[0.0, 0.0], [1.0, 0.0]],
-            ]
+            ],
         );
     }
 }

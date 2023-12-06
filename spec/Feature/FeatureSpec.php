@@ -77,7 +77,7 @@ final class FeatureSpec extends ObjectBehavior
                     'coordinates' => [1.0, 1.0],
                 ],
                 'properties' => self::PROPERTIES,
-            ]
+            ],
         );
     }
 
@@ -105,7 +105,7 @@ final class FeatureSpec extends ObjectBehavior
                 ],
                 'properties' => self::PROPERTIES,
                 'id'         => 2,
-            ]
+            ],
         );
     }
 }

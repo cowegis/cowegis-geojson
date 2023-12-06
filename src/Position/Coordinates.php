@@ -6,22 +6,14 @@ namespace Cowegis\GeoJson\Position;
 
 use JsonSerializable;
 
-/**
- * @psalm-type TSerializedCoordinates = array{0: float, 1: float, 2?: float}
- */
+/** @psalm-type TSerializedCoordinates = array{0: float, 1: float, 2?: float} */
 final class Coordinates implements JsonSerializable
 {
-    private float $longitude;
-
-    private float $latitude;
-
-    private ?float $altitude = null;
-
-    public function __construct(float $longitude, float $latitude, ?float $altitude = null)
-    {
-        $this->longitude = $longitude;
-        $this->latitude  = $latitude;
-        $this->altitude  = $altitude;
+    public function __construct(
+        private readonly float $longitude,
+        private readonly float $latitude,
+        private readonly float|null $altitude = null,
+    ) {
     }
 
     public function latitude(): float
@@ -34,7 +26,7 @@ final class Coordinates implements JsonSerializable
         return $this->longitude;
     }
 
-    public function altitude(): ?float
+    public function altitude(): float|null
     {
         return $this->altitude;
     }

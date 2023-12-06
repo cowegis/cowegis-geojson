@@ -19,8 +19,7 @@ use Cowegis\GeoJson\GeoJsonObject;
  * @psalm-type TSerializedMultiGeometry = TSerializedMultiPoint|TSerializedMultiPolygon|TSerializedMultiLineString
  * @psalm-type TSerializedSingleGeometry = TSerializedLineString|TSerializedPoint|TSerializedPolygon
  * @psalm-type TSerializedGeometry = TSerializedGeometryCollection|TSerializedMultiGeometry|TSerializedSingleGeometry
- * @template TSerialized of TSerializedGeometry
- * @extends GeoJsonObject<TSerialized>
+ * @extends GeoJsonObject<TSerializedGeometry>
  */
 interface GeometryObject extends GeoJsonObject
 {

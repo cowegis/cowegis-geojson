@@ -20,15 +20,9 @@ use Cowegis\GeoJson\Position\MultiLineCoordinates;
  */
 final class MultiLineString extends GeometryWithCoordinates
 {
-    private MultiLineCoordinates $coordinates;
-
-    public function __construct(
-        MultiLineCoordinates $coordinates,
-        ?BoundingBox $bbox = null
-    ) {
+    public function __construct(private readonly MultiLineCoordinates $coordinates, BoundingBox|null $bbox = null)
+    {
         parent::__construct($bbox);
-
-        $this->coordinates = $coordinates;
     }
 
     public function type(): string

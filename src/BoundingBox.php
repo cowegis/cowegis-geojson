@@ -17,42 +17,35 @@ use function sprintf;
  */
 final class BoundingBox implements JsonSerializable
 {
-    private Coordinates $southWest;
-
-    private Coordinates $northEast;
-
-    public function __construct(Coordinates $southWest, Coordinates $northEast)
+    public function __construct(private readonly Coordinates $southWest, private readonly Coordinates $northEast)
     {
-        if ($southWest->longitude() > $northEast->longitude()) {
+        if ($this->southWest->longitude() > $this->northEast->longitude()) {
             throw new InvalidArgumentException(
                 sprintf(
                     'South west longitude "%s" is not more western than north east longitude "%s"',
-                    $southWest->longitude(),
-                    $northEast->longitude()
-                )
+                    $this->southWest->longitude(),
+                    $this->northEast->longitude(),
+                ),
             );
         }
 
-        if ($southWest->latitude() > $northEast->latitude()) {
+        if ($this->southWest->latitude() > $this->northEast->latitude()) {
             throw new InvalidArgumentException(
                 sprintf(
                     'South west latitude "%s" is not more southern than north east latitude "%s"',
-                    $southWest->latitude(),
-                    $northEast->latitude()
-                )
+                    $this->southWest->latitude(),
+                    $this->northEast->latitude(),
+                ),
             );
         }
 
-        if ($southWest->altitude() === null && $northEast->altitude() !== null) {
+        if ($this->southWest->altitude() === null && $this->northEast->altitude() !== null) {
             throw new InvalidArgumentException('North east coordinates contains altitude but south west doesn\'t.');
         }
 
-        if ($northEast->altitude() === null && $southWest->altitude() !== null) {
+        if ($this->northEast->altitude() === null && $this->southWest->altitude() !== null) {
             throw new InvalidArgumentException('South west coordinates contains altitude but north east doesn\'t.');
         }
-
-        $this->southWest = $southWest;
-        $this->northEast = $northEast;
     }
 
     public function southWest(): Coordinates

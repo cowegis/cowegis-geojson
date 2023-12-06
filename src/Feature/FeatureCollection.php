@@ -21,20 +21,12 @@ use function array_map;
  */
 final class FeatureCollection extends BaseGeoJsonObject
 {
-    /**
-     * @var Feature[]
-     * @psalm-var list<Feature>
-     */
+    /** @var list<Feature> */
     private array $features = [];
 
-    /**
-     * @param Feature[] $features
-     * @psalm-param list<Feature> $features
-     */
-    public function __construct(
-        array $features,
-        ?BoundingBox $boundingBox = null
-    ) {
+    /** @param list<Feature> $features */
+    public function __construct(array $features, BoundingBox|null $boundingBox = null)
+    {
         parent::__construct($boundingBox);
 
         foreach ($features as $feature) {
@@ -52,16 +44,18 @@ final class FeatureCollection extends BaseGeoJsonObject
         return self::FEATURE_COLLECTION;
     }
 
-    /**
-     * @return Feature[]
-     * @psalm-return list<Feature>
-     */
+    /** @return list<Feature> */
     public function features(): array
     {
         return $this->features;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * @return TSerializedFeatureCollection
+     *
+     * @psalm-suppress InvalidReturnStatement
+     * @psalm-suppress InvalidReturnType
+     */
     public function jsonSerialize(): array
     {
         $data             = parent::jsonSerialize();
@@ -69,7 +63,7 @@ final class FeatureCollection extends BaseGeoJsonObject
             static function (Feature $feature): array {
                 return $feature->jsonSerialize();
             },
-            $this->features()
+            $this->features(),
         );
 
         return $data;

@@ -23,19 +23,13 @@ use function count;
  */
 final class LineString extends GeometryWithCoordinates
 {
-    private MultiCoordinates $coordinates;
-
-    public function __construct(
-        MultiCoordinates $coordinates,
-        ?BoundingBox $bbox = null
-    ) {
+    public function __construct(private readonly MultiCoordinates $coordinates, BoundingBox|null $bbox = null)
+    {
         parent::__construct($bbox);
 
-        if (count($coordinates) < 2) {
-            throw new InvalidArgumentException();
+        if (count($this->coordinates) < 2) {
+            throw new InvalidArgumentException('LineString requires at least 2 coordinates');
         }
-
-        $this->coordinates = $coordinates;
     }
 
     public function type(): string

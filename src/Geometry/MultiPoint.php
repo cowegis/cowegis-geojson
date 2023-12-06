@@ -20,13 +20,9 @@ use Cowegis\GeoJson\Position\MultiCoordinates;
  */
 final class MultiPoint extends GeometryWithCoordinates
 {
-    private MultiCoordinates $coordinates;
-
-    public function __construct(MultiCoordinates $coordinates, ?BoundingBox $bbox = null)
+    public function __construct(private readonly MultiCoordinates $coordinates, BoundingBox|null $bbox = null)
     {
         parent::__construct($bbox);
-
-        $this->coordinates = $coordinates;
     }
 
     public function type(): string

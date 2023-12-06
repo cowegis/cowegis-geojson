@@ -12,9 +12,7 @@ use function array_values;
 use function count;
 use function sprintf;
 
-/**
- * @psalm-import-type TSerializedCoordinates from Coordinates
- */
+/** @psalm-import-type TSerializedCoordinates from Coordinates */
 final class LinearRing implements JsonSerializable
 {
     /**
@@ -58,7 +56,7 @@ final class LinearRing implements JsonSerializable
             static function (Coordinates $coordinates) {
                 return $coordinates->jsonSerialize();
             },
-            $this->coordinates()
+            $this->coordinates(),
         );
     }
 }

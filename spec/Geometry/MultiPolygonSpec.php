@@ -23,7 +23,7 @@ final class MultiPolygonSpec extends ObjectBehavior
                     new Coordinates(0.0, 0.0),
                     new Coordinates(1.0, 0.0),
                     new Coordinates(2.0, 0.0),
-                    new Coordinates(0.0, 0.0)
+                    new Coordinates(0.0, 0.0),
                 ),
             ],
             [
@@ -31,7 +31,7 @@ final class MultiPolygonSpec extends ObjectBehavior
                     new Coordinates(4.0, 0.0),
                     new Coordinates(5.0, 0.0),
                     new Coordinates(6.0, 0.0),
-                    new Coordinates(4.0, 0.0)
+                    new Coordinates(4.0, 0.0),
                 ),
             ],
         ];
@@ -73,7 +73,7 @@ final class MultiPolygonSpec extends ObjectBehavior
                     [[[0.0, 0.0], [1.0, 0.0], [2.0, 0.0], [0.0, 0.0]]],
                     [[[4.0, 0.0], [5.0, 0.0], [6.0, 0.0], [4.0, 0.0]]],
                 ],
-            ]
+            ],
         );
     }
 }

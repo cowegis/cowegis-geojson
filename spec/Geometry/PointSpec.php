@@ -51,7 +51,7 @@ final class PointSpec extends ObjectBehavior
                 'type'        => 'Point',
                 'bbox'        => [1.0, 0.0, 2.0, 0.0],
                 'coordinates' => [0.0, 0.0],
-            ]
+            ],
         );
     }
 }

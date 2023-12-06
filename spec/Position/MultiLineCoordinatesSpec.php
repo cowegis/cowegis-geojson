@@ -17,7 +17,7 @@ final class MultiLineCoordinatesSpec extends ObjectBehavior
     {
         $this->beConstructedWith(
             new MultiCoordinates(new Coordinates(0.0, 0.0), new Coordinates(1.0, 0.0)),
-            new MultiCoordinates(new Coordinates(2.0, 0.0), new Coordinates(1.0, 0.0))
+            new MultiCoordinates(new Coordinates(2.0, 0.0), new Coordinates(1.0, 0.0)),
         );
     }
 
