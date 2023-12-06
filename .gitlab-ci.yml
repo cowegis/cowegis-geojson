@@ -10,7 +10,7 @@ before_script:
   - echo "ipv6" >> /etc/modules
 
 job_test_ci:
-  image: discordier/php-runner:7.4-alpine
+  image: discordier/php-runner:8.2-alpine
   stage: pre-test
   except:
     - tags
