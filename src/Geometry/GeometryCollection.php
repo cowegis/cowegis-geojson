@@ -75,7 +75,7 @@ final class GeometryCollection extends BaseGeoJsonObject implements GeometryObje
             static function (GeometryObject $geometryObject): array {
                 return $geometryObject->jsonSerialize();
             },
-            $this->geometries(),
+            $this->geometries,
         );
 
         return $data;

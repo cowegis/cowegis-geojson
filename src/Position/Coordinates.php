@@ -51,12 +51,12 @@ final class Coordinates implements JsonSerializable
     public function jsonSerialize(): array
     {
         $data = [
-            $this->longitude(),
-            $this->latitude(),
+            $this->longitude,
+            $this->latitude,
         ];
 
-        if ($this->altitude() !== null) {
-            $data[] = $this->altitude();
+        if ($this->altitude !== null) {
+            $data[] = $this->altitude;
         }
 
         return $data;

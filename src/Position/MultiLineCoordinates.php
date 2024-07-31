@@ -57,7 +57,7 @@ final class MultiLineCoordinates implements JsonSerializable, Countable
             static function (MultiCoordinates $coordinates): array {
                 return $coordinates->jsonSerialize();
             },
-            $this->coordinates(),
+            $this->coordinates,
         );
     }
 }

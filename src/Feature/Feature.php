@@ -65,8 +65,8 @@ final class Feature extends BaseGeoJsonObject
     public function jsonSerialize(): array
     {
         $data               = parent::jsonSerialize();
-        $data['geometry']   = $this->geometry()->jsonSerialize();
-        $data['properties'] = $this->properties();
+        $data['geometry']   = $this->geometry->jsonSerialize();
+        $data['properties'] = $this->properties;
 
         if ($this->id !== null) {
             $data['id'] = $this->id;

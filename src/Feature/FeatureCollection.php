@@ -63,7 +63,7 @@ final class FeatureCollection extends BaseGeoJsonObject
             static function (Feature $feature): array {
                 return $feature->jsonSerialize();
             },
-            $this->features(),
+            $this->features,
         );
 
         return $data;

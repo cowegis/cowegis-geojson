@@ -50,7 +50,7 @@ final class MultiCoordinates implements JsonSerializable, Countable
             static function (Coordinates $coordinates): array {
                 return $coordinates->jsonSerialize();
             },
-            $this->coordinates(),
+            $this->positions,
         );
     }
 }
