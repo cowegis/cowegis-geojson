@@ -1,0 +1,17 @@
+{
+  "receipts": ["projects/library"],
+  "config": {
+    "phpConstraint": "^8.2",
+    "directories": [
+      "spec"
+    ]
+  },
+  "tools": {
+    "phpcq": {
+      "plugins": {
+        "phpunit": false,
+        "phpspec": true
+      }
+    }
+  }
+}
