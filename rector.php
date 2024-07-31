@@ -15,6 +15,6 @@ return RectorConfig::configure()
         // codeQuality: true,
         typeDeclarations: true,
         privatization: true,
-        // instanceOf: true,
+        instanceOf: true,
         // strictBooleans: true,
     );

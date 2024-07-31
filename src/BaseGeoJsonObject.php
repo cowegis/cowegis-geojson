@@ -30,7 +30,7 @@ abstract class BaseGeoJsonObject implements GeoJsonObject
         $data = ['type' => $this->type()];
 
         $boundingBox = $this->boundingBox();
-        if ($boundingBox !== null) {
+        if ($boundingBox instanceof BoundingBox) {
             $data['bbox'] = $boundingBox->jsonSerialize();
         }
 
