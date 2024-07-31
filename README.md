@@ -4,7 +4,7 @@ This library is a PHP implementation of the GeoJSON specification [(RFC 7946)](h
 
 ## Requirements
 
-- PHP `^7.2`
+- PHP `^8.2`
 
 ## Install
 
