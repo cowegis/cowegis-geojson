@@ -53,7 +53,8 @@ final class MultiLineCoordinates implements JsonSerializable, Countable
     public function jsonSerialize(): array
     {
         return array_map(
-            static function (MultiCoordinates $coordinates) {
+            /** @return list<TSerializedCoordinates> */
+            static function (MultiCoordinates $coordinates): array {
                 return $coordinates->jsonSerialize();
             },
             $this->coordinates(),

@@ -53,7 +53,8 @@ final class LinearRing implements JsonSerializable
     public function jsonSerialize(): array
     {
         return array_map(
-            static function (Coordinates $coordinates) {
+            /** @return TSerializedCoordinates */
+            static function (Coordinates $coordinates): array {
                 return $coordinates->jsonSerialize();
             },
             $this->coordinates(),
