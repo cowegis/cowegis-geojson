@@ -55,7 +55,7 @@ final class Coordinates implements JsonSerializable
             $this->latitude(),
         ];
 
-        if ($this->altitude()) {
+        if ($this->altitude() !== null) {
             $data[] = $this->altitude();
         }
 
