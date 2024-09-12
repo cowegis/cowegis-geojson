@@ -15,5 +15,10 @@
                 <referencedClass name="Psr\Container\NotFoundExceptionInterface"/>
             </errorLevel>
         </InvalidCatch>
+        <MissingClassConstType>
+            <errorLevel type="error">
+                <directory name="src"/>
+            </errorLevel>
+        </MissingClassConstType>
     </issueHandlers>
 </psalm>
