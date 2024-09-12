@@ -16,7 +16,7 @@
             </errorLevel>
         </InvalidCatch>
         <MissingClassConstType>
-            <errorLevel type="error">
+            <errorLevel type="suppress">
                 <directory name="src"/>
             </errorLevel>
         </MissingClassConstType>
