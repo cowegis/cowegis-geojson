@@ -6,6 +6,7 @@ namespace Cowegis\GeoJson\Position;
 
 use Countable;
 use JsonSerializable;
+use Override;
 
 use function array_map;
 use function array_values;
@@ -25,6 +26,7 @@ final class MultiCoordinates implements JsonSerializable, Countable
         $this->positions = array_values($positions);
     }
 
+    #[Override]
     public function count(): int
     {
         return count($this->positions);
@@ -43,6 +45,7 @@ final class MultiCoordinates implements JsonSerializable, Countable
      * @return array<int, array<string,float>>
      * @psalm-return list<TSerializedCoordinates>
      */
+    #[Override]
     public function jsonSerialize(): array
     {
         return array_map(

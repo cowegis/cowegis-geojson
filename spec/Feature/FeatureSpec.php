@@ -13,7 +13,7 @@ use PhpSpec\ObjectBehavior;
 
 final class FeatureSpec extends ObjectBehavior
 {
-    private const PROPERTIES = [
+    private const array PROPERTIES = [
         'foo' => 'foo',
         'bar' => 'baz',
     ];

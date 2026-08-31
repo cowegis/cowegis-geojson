@@ -7,6 +7,7 @@ namespace Cowegis\GeoJson\Geometry;
 use Cowegis\GeoJson\BoundingBox;
 use Cowegis\GeoJson\Position\Coordinates;
 use Cowegis\GeoJson\Position\LinearRing;
+use Override;
 
 /**
  * @psalm-import-type TSerializedBoundingBox from BoundingBox
@@ -29,6 +30,7 @@ final class Polygon extends GeometryWithCoordinates
         parent::__construct($bbox);
     }
 
+    #[Override]
     public function type(): string
     {
         return self::POLYGON;
@@ -38,6 +40,7 @@ final class Polygon extends GeometryWithCoordinates
      * @return LinearRing[]
      * @psalm-return list<LinearRing>
      */
+    #[Override]
     public function coordinates(): array
     {
         return $this->coordinates;

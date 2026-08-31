@@ -6,6 +6,7 @@ namespace Cowegis\GeoJson\Position;
 
 use Cowegis\GeoJson\Exception\InvalidArgumentException;
 use JsonSerializable;
+use Override;
 
 use function array_map;
 use function array_values;
@@ -50,6 +51,7 @@ final class LinearRing implements JsonSerializable
      * @return array<int, array<string,float>>
      * @psalm-return list<TSerializedCoordinates>
      */
+    #[Override]
     public function jsonSerialize(): array
     {
         return array_map(

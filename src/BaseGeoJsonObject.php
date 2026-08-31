@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Cowegis\GeoJson;
 
+use Override;
+
 /**
  * @template TSerialized
  * @psalm-import-type TSerializedBoundingBox from BoundingBox
@@ -19,12 +21,14 @@ abstract class BaseGeoJsonObject implements GeoJsonObject
     {
     }
 
+    #[Override]
     public function boundingBox(): BoundingBox|null
     {
         return $this->boundingBox;
     }
 
     /** {@inheritDoc} */
+    #[Override]
     public function jsonSerialize(): array
     {
         $data = ['type' => $this->type()];

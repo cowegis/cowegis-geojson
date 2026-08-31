@@ -7,6 +7,7 @@ namespace Cowegis\GeoJson;
 use Cowegis\GeoJson\Exception\InvalidArgumentException;
 use Cowegis\GeoJson\Position\Coordinates;
 use JsonSerializable;
+use Override;
 
 use function sprintf;
 
@@ -62,6 +63,7 @@ final class BoundingBox implements JsonSerializable
      * @return float[]
      * @psalm-return TSerializedBoundingBox
      */
+    #[Override]
     public function jsonSerialize(): array
     {
         $swAltitude = $this->southWest->altitude();

@@ -7,6 +7,7 @@ namespace Cowegis\GeoJson\Geometry;
 use Cowegis\GeoJson\BoundingBox;
 use Cowegis\GeoJson\Position\Coordinates;
 use Cowegis\GeoJson\Position\MultiLineCoordinates;
+use Override;
 
 /**
  * @psalm-import-type TSerializedBoundingBox from BoundingBox
@@ -25,11 +26,13 @@ final class MultiLineString extends GeometryWithCoordinates
         parent::__construct($bbox);
     }
 
+    #[Override]
     public function type(): string
     {
         return self::MULTI_LINE_STRING;
     }
 
+    #[Override]
     public function coordinates(): MultiLineCoordinates
     {
         return $this->coordinates;

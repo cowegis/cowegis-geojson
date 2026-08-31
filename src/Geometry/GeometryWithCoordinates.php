@@ -8,6 +8,7 @@ use Cowegis\GeoJson\BaseGeoJsonObject;
 use Cowegis\GeoJson\BoundingBox;
 use Cowegis\GeoJson\Exception\InvalidArgumentException;
 use JsonSerializable;
+use Override;
 
 use function is_array;
 
@@ -30,6 +31,7 @@ abstract class GeometryWithCoordinates extends BaseGeoJsonObject implements Geom
      * @psalm-suppress InvalidReturnType
      * @psalm-suppress InvalidReturnStatement
      */
+    #[Override]
     public function jsonSerialize(): array
     {
         $data                = parent::jsonSerialize();

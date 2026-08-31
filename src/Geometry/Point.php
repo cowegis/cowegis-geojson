@@ -6,6 +6,7 @@ namespace Cowegis\GeoJson\Geometry;
 
 use Cowegis\GeoJson\BoundingBox;
 use Cowegis\GeoJson\Position\Coordinates;
+use Override;
 
 /**
  * @psalm-import-type TSerializedBoundingBox from BoundingBox
@@ -24,11 +25,13 @@ final class Point extends GeometryWithCoordinates
         parent::__construct($bbox);
     }
 
+    #[Override]
     public function type(): string
     {
         return self::POINT;
     }
 
+    #[Override]
     public function coordinates(): Coordinates
     {
         return $this->coordinates;

@@ -10,9 +10,9 @@ use PhpSpec\ObjectBehavior;
 
 final class CoordinatesSpec extends ObjectBehavior
 {
-    private const LATITUDE  = 13.3888599;
-    private const LONGITUDE = 52.5170365;
-    private const ALTITUDE  = 2.0;
+    private const float LATITUDE  = 13.3888599;
+    private const float LONGITUDE = 52.5170365;
+    private const float ALTITUDE  = 2.0;
 
     public function let(): void
     {

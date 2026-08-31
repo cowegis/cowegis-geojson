@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Cowegis\GeoJson\Position;
 
 use JsonSerializable;
+use Override;
 
 /** @psalm-type TSerializedCoordinates = array{0: float, 1: float, 2?: float} */
 final class Coordinates implements JsonSerializable
@@ -48,6 +49,7 @@ final class Coordinates implements JsonSerializable
      * @return array<int,float>
      * @psalm-return TSerializedCoordinates
      */
+    #[Override]
     public function jsonSerialize(): array
     {
         $data = [

@@ -6,6 +6,7 @@ namespace Cowegis\GeoJson\Feature;
 
 use Cowegis\GeoJson\BaseGeoJsonObject;
 use Cowegis\GeoJson\BoundingBox;
+use Override;
 
 use function array_map;
 
@@ -39,6 +40,7 @@ final class FeatureCollection extends BaseGeoJsonObject
         $this->features[] = $feature;
     }
 
+    #[Override]
     public function type(): string
     {
         return self::FEATURE_COLLECTION;
@@ -56,6 +58,7 @@ final class FeatureCollection extends BaseGeoJsonObject
      * @psalm-suppress InvalidReturnStatement
      * @psalm-suppress InvalidReturnType
      */
+    #[Override]
     public function jsonSerialize(): array
     {
         $data             = parent::jsonSerialize();

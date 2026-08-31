@@ -8,6 +8,7 @@ use Cowegis\GeoJson\BoundingBox;
 use Cowegis\GeoJson\Exception\InvalidArgumentException;
 use Cowegis\GeoJson\Position\Coordinates;
 use Cowegis\GeoJson\Position\MultiCoordinates;
+use Override;
 
 use function count;
 
@@ -32,11 +33,13 @@ final class LineString extends GeometryWithCoordinates
         }
     }
 
+    #[Override]
     public function type(): string
     {
         return self::LINE_STRING;
     }
 
+    #[Override]
     public function coordinates(): MultiCoordinates
     {
         return $this->coordinates;

@@ -23,11 +23,11 @@ use Cowegis\GeoJson\GeoJsonObject;
  */
 interface GeometryObject extends GeoJsonObject
 {
-    public const POINT               = 'Point';
-    public const MULTI_POINT         = 'MultiPoint';
-    public const LINE_STRING         = 'LineString';
-    public const MULTI_LINE_STRING   = 'MultiLineString';
-    public const POLYGON             = 'Polygon';
-    public const MULTI_POLYGON       = 'MultiPolygon';
-    public const GEOMETRY_COLLECTION = 'GeometryCollection';
+    public const string POINT               = 'Point';
+    public const string MULTI_POINT         = 'MultiPoint';
+    public const string LINE_STRING         = 'LineString';
+    public const string MULTI_LINE_STRING   = 'MultiLineString';
+    public const string POLYGON             = 'Polygon';
+    public const string MULTI_POLYGON       = 'MultiPolygon';
+    public const string GEOMETRY_COLLECTION = 'GeometryCollection';
 }

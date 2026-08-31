@@ -7,6 +7,7 @@ namespace Cowegis\GeoJson\Feature;
 use Cowegis\GeoJson\BaseGeoJsonObject;
 use Cowegis\GeoJson\BoundingBox;
 use Cowegis\GeoJson\Geometry\GeometryObject;
+use Override;
 
 /**
  * @psalm-import-type TSerializedBoundingBox from BoundingBox
@@ -34,6 +35,7 @@ final class Feature extends BaseGeoJsonObject
         parent::__construct($bbox);
     }
 
+    #[Override]
     public function type(): string
     {
         return self::FEATURE;
@@ -62,6 +64,7 @@ final class Feature extends BaseGeoJsonObject
      * @psalm-suppress InvalidReturnType
      * @psalm-suppress LessSpecificImplementedReturnType
      */
+    #[Override]
     public function jsonSerialize(): array
     {
         $data               = parent::jsonSerialize();
