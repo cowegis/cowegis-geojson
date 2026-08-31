@@ -48,7 +48,7 @@ jobs:
           key: ${{ runner.os }}-build-${{ env.cache-name }}
 
       - name: Install composer dependencies
-        run: composer install
+        run: composer update
 
       - name: Cache vendor directory of phpcq tool runner
         uses: actions/cache@v5
@@ -71,7 +71,7 @@ jobs:
 
       - name: Upload build directory to artifact
         uses: actions/upload-artifact@v7
-        if: ${{ success() }} || ${{ failure() }}
+        if: ${{ success() || failure() }}
         with:
           name: phpcq-builds-php-${{ matrix.php }}
           path: .phpcq/build/
