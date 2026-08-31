@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.1.2 - 2026-08-31
+
+ - Bump the required PHP version to ^8.3
+
 ## 1.1.1 - 2024-07-32
 
  - Bump required PHP version
